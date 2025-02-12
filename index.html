@@ -20,7 +20,7 @@
 			height: 100vh;
 		}
 
-		#header{
+		#header {
 			position: absolute;
 			top: calc(50% - 25px);
 			left: 0;
@@ -29,11 +29,11 @@
 			color: #fff;
 			text-align: center;
 			line-height: 50px;
-			font-size: 120px;
+			font-size: 4em;
 			text-shadow: #fff 0px 0px 8px;
 		}
 
-		#description{
+		#description {
 			position: absolute;
 			top: calc(50% + 35px);
 			left: 0;
@@ -46,7 +46,7 @@
 			text-shadow: #fff 0px 0px 10px;
 		}
 
-		#name{
+		#name {
 			position: absolute;
 			top: calc(50% - 100px);
 			left: 0;
@@ -56,6 +56,17 @@
 			text-align: center;
 			line-height: 50px;
 			font-size: 20px;
+		}
+
+		#equipment, #equipment a {
+			position: absolute;
+			bottom: 10px;
+			left: 0;
+			width: 100%;
+			color: #ffffffbe;
+			text-align: center;
+			font-size: 1em;
+			text-decoration: dotted 1px;
 		}
 	</style>
 </head>
@@ -71,8 +82,11 @@
 		KR4AUW
 	</div>
 	<div id="description">
-		<i>FM05nc, UHF/VHF, Technician Class</i>
+		<i>FM05nc, Technician Class</i>
 	</div>
+	<!-- <div id="equipment">
+		<i><a href="equipment.html">My Equipment</a></i>
+	</div> -->
 	<script src="//unpkg.com/globe.gl"></script>
 	<script>
 
