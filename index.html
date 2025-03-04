@@ -13,6 +13,8 @@
 			background-color: #000;
 			color: #fff;
 			font-family: 'Courier New', Courier, monospace;
+			height: 100vh;
+			width: 100vw;
 		}
 
 		#globeViz {
@@ -58,7 +60,8 @@
 			font-size: 20px;
 		}
 
-		#equipment, #equipment a {
+		#equipment,
+		#equipment a {
 			position: absolute;
 			bottom: 10px;
 			left: 0;
@@ -89,29 +92,160 @@
 	</div> -->
 	<script src="//unpkg.com/globe.gl"></script>
 	<script>
+		// HamGridSquare.js
+		// Copyright 2014 Paul Brewer KI6CQ
+		// License:  MIT License http://opensource.org/licenses/MIT
+		//
+		// Javascript routines to convert from lat-lon to Maidenhead Grid Squares
+		// typically used in Ham Radio Satellite operations and VHF Contests
+		//
+		// Inspired in part by K6WRU Walter Underwood's python answer
+		// http://ham.stackexchange.com/a/244
+		// to this stack overflow question:
+		// How Can One Convert From Lat/Long to Grid Square
+		// http://ham.stackexchange.com/questions/221/how-can-one-convert-from-lat-long-to-grid-square
+		//
 
-		// Taken directly from https://raw.githubusercontent.com/vasturiano/globe.gl/refs/heads/master/example/random-arcs/index.html with a minor edit for the number of arcs generated
-		function randomIntFromInterval(min, max) { // min and max included 
-			return Math.floor(Math.random() * (max - min + 1) + min);
+		// LPB 03 MAR 2025: Removed test function 
+
+
+		latLonToGridSquare = function (param1, param2) {
+			var lat = -100.0;
+			var lon = 0.0;
+			var adjLat, adjLon, GLat, GLon, nLat, nLon, gLat, gLon, rLat, rLon;
+			var U = 'ABCDEFGHIJKLMNOPQRSTUVWX'
+			var L = U.toLowerCase();
+			// support Chris Veness 2002-2012 LatLon library and
+			// other objects with lat/lon properties
+			// properties could be numbers, or strings
+			function toNum(x) {
+				if (typeof (x) === 'number') return x;
+				if (typeof (x) === 'string') return parseFloat(x);
+				// dont call a function property here because of binding issue
+				throw "HamGridSquare -- toNum -- can not convert input: " + x;
+			}
+			if (typeof (param1) === 'object') {
+				if (param1.length === 2) {
+					lat = toNum(param1[0]);
+					lon = toNum(param1[1]);
+				} else if (('lat' in param1) && ('lon' in param1)) {
+					lat = (typeof (param1.lat) === 'function') ? toNum(param1.lat()) : toNum(param1.lat);
+					lon = (typeof (param1.lon) === 'function') ? toNum(param1.lon()) : toNum(param1.lon);
+				} else if (('latitude' in param1) && ('longitude' in param1)) {
+					lat = (typeof (param1.latitude) === 'function') ? toNum(param1.latitude()) : toNum(param1.latitude);
+					lon = (typeof (param1.longitude) === 'function') ? toNum(param1.longitude()) : toNum(param1.longitude);
+				} else {
+					throw "HamGridSquare -- can not convert object -- " + param1;
+				}
+			} else {
+				lat = toNum(param1);
+				lon = toNum(param2);
+			}
+			if (isNaN(lat)) throw "lat is NaN";
+			if (isNaN(lon)) throw "lon is NaN";
+			if (Math.abs(lat) === 90.0) throw "grid squares invalid at N/S poles";
+			if (Math.abs(lat) > 90) throw "invalid latitude: " + lat;
+			if (Math.abs(lon) > 180) throw "invalid longitude: " + lon;
+			adjLat = lat + 90;
+			adjLon = lon + 180;
+			GLat = U[Math.trunc(adjLat / 10)];
+			GLon = U[Math.trunc(adjLon / 20)];
+			nLat = '' + Math.trunc(adjLat % 10);
+			nLon = '' + Math.trunc((adjLon / 2) % 10);
+			rLat = (adjLat - Math.trunc(adjLat)) * 60;
+			rLon = (adjLon - 2 * Math.trunc(adjLon / 2)) * 60;
+			gLat = L[Math.trunc(rLat / 2.5)];
+			gLon = L[Math.trunc(rLon / 5)];
+			return GLon + GLat + nLon + nLat + gLon + gLat;
 		}
 
-		const N = randomIntFromInterval(1, 100);
+		gridSquareToLatLon = function (grid, obj) {
+			var returnLatLonConstructor = (typeof (LatLon) === 'function');
+			var returnObj = (typeof (obj) === 'object');
+			var lat = 0.0, lon = 0.0, aNum = "a".charCodeAt(0), numA = "A".charCodeAt(0);
+			function lat4(g) {
+				return 10 * (g.charCodeAt(1) - numA) + parseInt(g.charAt(3)) - 90;
+			}
+			function lon4(g) {
+				return 20 * (g.charCodeAt(0) - numA) + 2 * parseInt(g.charAt(2)) - 180;
+			}
+			if ((grid.length != 4) && (grid.length != 6)) throw "gridSquareToLatLon: grid must be 4 or 6 chars: " + grid;
+			if (/^[A-X][A-X][0-9][0-9]$/.test(grid)) {
+				lat = lat4(grid) + 0.5;
+				lon = lon4(grid) + 1;
+			} else if (/^[A-X]{2}[0-9]{2}([A-Xa-x]){2}$/.test(grid)) {
+				lat = lat4(grid) + (1.0 / 60.0) * 2.5 * (grid.charCodeAt(5) - aNum + 0.5);
+				lon = lon4(grid) + (1.0 / 60.0) * 5 * (grid.charCodeAt(4) - aNum + 0.5);
+			}
+			else throw "gridSquareToLatLon: invalid grid: " + grid;
+			if (returnLatLonConstructor) return new LatLon(lat, lon);
+			if (returnObj) {
+				obj.lat = lat;
+				obj.lon = lon;
+				return obj;
+			}
+			return [lat, lon];
+		};
 
-		const arcsData = [...Array(N).keys()].map(() => ({
-			startLat: (Math.random() - 0.5) * 180,
-			startLng: (Math.random() - 0.5) * 360,
-			endLat: (Math.random() - 0.5) * 180,
-			endLng: (Math.random() - 0.5) * 360,
-			color: [['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)], ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]]
+		HamGridSquare = {
+			toLatLon: gridSquareToLatLon,
+			fromLatLon: latLonToGridSquare,
+		};
+	</script>
+	<script>
+
+		// grids from qsos in array
+		source_grids = ['FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05MF', 'FM05MF', 'FM05MF'];
+
+		qso_grids = ["EM66", "EL95", "EN29", "EN29", "EM10", "FI06", "DM79", "FK68", "GF05", "GG66", "FK94", "DN71", "FF30", "DM68", "DM79", "GF15vd", "DM65", "DM79", "PN78", "DM33", "GG53", "QN03", "DM43", "DN55", "DM34rs", "DM79", "FJ09", "EK09", "DM43", "DM42", "DM79", "GN38", "FK58", "DM93", "FM04", "FK93", "JN11", "KP20", "FF46", "GG29", "DM26", "DM79", "FK87", "DM26", "QF56", "FK58", "FK58Bm", "DM43DF", "DM79ON", "DN44KP", "EM16XQ", "DM78", "DM42ng", "JN72", "FK42xo", "EM12HU", "EK57", "CM95rr", "CN85rp", "EN35jb",];
+
+		qso_coords = [];
+		source_coords = [];
+
+
+		for (let i = 0; i < source_grids.length; i++) {
+			// console.info("Source Grid " + source_grids[i]);
+			source_coords.push(HamGridSquare.toLatLon(source_grids[i]));
+
+			// console.log(source_coords[i]);
+		}
+
+
+		for (let i = 0; i < qso_grids.length; i++) {
+			// console.info("QSO Grid " + qso_grids[i]);
+			qso_coords.push(HamGridSquare.toLatLon(qso_grids[i]));
+
+			// console.log(qso_coords[i]);
+		}
+
+		// console.log(source_coords.length);
+
+
+		// IF THIS EVER DOESN'T WORK
+		// CHECK THE LENGTH OF THE ARRAYS. THEY SHOULD BE THE SAME
+		// MAKE SURE THE DUDE DOWN IN ST. BARTHALEMY ISN'T MISSING, HIS GRID IS FK87!
+
+		// arcs from source to qso
+		const arcsData = source_coords.map((source, i) => ({
+			startLat: source[0],
+			startLng: source[1],
+			endLat: qso_coords[i][0],
+			endLng: qso_coords[i][1],
+			color: ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]
 		}));
 
-		new Globe(document.getElementById('globeViz'))
+		globe = new Globe(document.getElementById('globeViz'))
 			.globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
 			.arcsData(arcsData)
 			.arcColor('color')
+			.arcDashAnimateTime(2000)
+			.showAtmosphere(true)
 			.arcDashLength(() => Math.random())
 			.arcDashGap(() => Math.random())
-			.arcDashAnimateTime(() => Math.random() * 4000 + 500);
+			.arcDashAnimateTime(() => Math.random() * 4000 + 500)
+			.pointOfView({ lat: "35.5", lng: "-78.5", altitude: 2 })
+			.autoRotate(true);
+
 
 	</script>
 </body>
