@@ -6,13 +6,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>KR4AUW</title>
 	<style>
+		@font-face {
+			font-family: 'RedHatTextVF';
+			src: url('assets/RedHatTextVF.ttf') format('truetype');
+		}
+
+
 		body {
 			margin: 0;
 			padding: 0;
-			overflow: hidden;
 			background-color: #000;
 			color: #fff;
-			font-family: 'Courier New', Courier, monospace;
 			height: 100vh;
 			width: 100vw;
 		}
@@ -33,6 +37,7 @@
 			line-height: 50px;
 			font-size: 4em;
 			text-shadow: #fff 0px 0px 8px;
+			font-family: 'Courier New', Courier, monospace;
 		}
 
 		#description {
@@ -46,6 +51,8 @@
 			line-height: 50px;
 			font-size: 20px;
 			text-shadow: #fff 0px 0px 10px;
+			font-family: 'Courier New', Courier, monospace;
+
 		}
 
 		#name {
@@ -58,14 +65,75 @@
 			text-align: center;
 			line-height: 50px;
 			font-size: 20px;
+			font-family: 'Courier New', Courier, monospace;
+
 		}
 
+		/* 
 		#equipment,
 		#equipment a {
 			position: absolute;
 			bottom: 10px;
 			left: 0;
 			width: 100%;
+			color: #ffffffbe;
+			text-align: center;
+			font-size: 1em;
+			text-decoration: dotted 1px;
+		} */
+
+
+		#scroll_past_globe {
+			position: absolute;
+			bottom: 10px;
+			/* center */
+			left: 50%;
+			transform: translateX(-50%);
+			color: #ffffff44;
+			font-size: 1em;
+			text-decoration: dotted 1px;
+			background-color: #00000000;
+			border: 1px solid #ffffff44;
+			border-radius: .3em;
+			padding: 5px;
+			cursor: pointer;
+			font-style: italic;
+		}
+
+		h1 {
+			text-align: center;
+			font-size: 2em;
+			color: black;
+		}
+
+		section {
+			padding: 20px;
+			margin: 0 auto;
+			background-color: #fff;
+			color: #000;
+			font-family: 'RedHatTextVF', sans-serif;
+		}
+	</style>
+	<style>
+		.space_equally {
+			margin: 0 10px;
+			border: #000 1px solid;
+			padding: 5px;
+			border-radius: 5px;
+		}
+
+		a {
+			color: #000;
+			text-decoration-style: dotted;
+		}
+
+		a:hover {
+			color: #000;
+			text-decoration: underline;
+		}
+
+		footer {
+			padding: 1em;
 			color: #ffffffbe;
 			text-align: center;
 			font-size: 1em;
@@ -90,6 +158,68 @@
 	<!-- <div id="equipment">
 		<i><a href="equipment.html">My Equipment</a></i>
 	</div> -->
+
+	<button id="scroll_past_globe">
+		Scroll Past Globe
+	</button>
+	<section>
+		<h1>
+			Hello!
+		</h1>
+		<center> <!-- GUESS WHAT IT STILL WORKS SO I'M NOT GONNA FIX IT  -->
+			<a href="https://www.qrz.com/db/kr4auw" target="_blank" rel="noopener noreferrer" class="space_equally">QRZ
+				Profile</a>
+			<a href="https://lucasburlingham.me" target="_blank" rel="noopener noreferrer"
+				class="space_equally">lucasburlingham.me</a>
+			<a href="https://pskreporter.info/pskmap.html?preset&callsign=KR4AUW" target="_blank"
+				rel="noopener noreferrer" class="space_equally">PSK Reporter</a>
+		</center>
+		<p>
+			Welcome to one of my websites. My personal website can be found at <a
+				href="https://lucasburlingham.me">lucasburlingham.me</a>, and hosts a wider range of articles, strings
+			around my online thumb, and an assortment of other <a
+				href="https://www.catb.org/jargon/html/G/Good-Thing.html" target="_blank"
+				rel="noopener noreferrer"><i>Good Things</i></a>.
+		</p>
+		<p>
+			You may have noticed that this website isn't <i>amazing</i>, besides the globe that greeted you. <i
+				style="color: #00000055">(Yes, those are accurate depictions of the QSO's I've made.)</i>
+		</p>
+		<p>
+			<br>
+			That's on purpose.
+			<br>
+			<br>
+		</p>
+		<p>
+			What good is a hobby (such as amateur radio) if you get frustrated with it and spend so much time distracted
+			that you never really enjoy the <i>doing</i> of the actual hobby?
+		</p>
+		<p>That being said, it's a shame for a website to look like it was designed by a colorblind zebra who learned
+			html4 and never turned back. <i style="color: #00000055">Baaaackkk in myyyy dayyyy we used these things
+				called TYPE WRITERS!</i></p>
+		<p>
+			So here this site is. It's clean, simple, works decently well on a cell phone, and runs on a CDN so I don't
+			have to worry about security.
+		</p>
+
+		<h2>
+			How to Contact Me over the air.
+		</h2>
+		<p>I mostly run FT8. I'm a technician, so I'm limited to 10m on HF.</p>
+		<h2>
+			What about QSL Cards?
+		</h2>
+		<p>Never received one, but as soon as I do, I'll design one and get it in the mail using your return address.
+		</p>
+
+		<hr>
+		<div id="logbook">
+			<iframe align="middle" frameborder="0" height="500" scrolling="no"
+				src="https://logbook.qrz.com/lbstat/KR4AUW/" style="width: 100%;" tabindex="-1" width="640"></iframe>
+		</div>
+		<hr>
+	</section>
 	<script src="//unpkg.com/globe.gl"></script>
 	<script>
 		// HamGridSquare.js
@@ -248,6 +378,17 @@
 
 
 	</script>
+	<script>
+		document.getElementById('scroll_past_globe').addEventListener('click', () => {
+			window.scrollTo({
+				top: document.body.scrollHeight,
+				behavior: 'smooth'
+			});
+		});
+	</script>
+	<footer>
+		<p>This site is a work in progress and is &copy; 2025 Lucas Burlingham.</p>
+	</footer>
 </body>
 
 </html>
