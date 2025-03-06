@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Globe Animation Creator</title>
+
+	<style>
+		body {
+			font-family: Redhat Display, sans-serif;
+			margin: 2em;
+			padding: 0;
+			background-color: #f0f0f0;
+		}
+
+		#preview_globe {
+			margin: 0 0 10% 0;
+			padding: 0;
+			width: fit-content;
+			height: 50%;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Convert ADIF to Globe</h1>
+
+	<form method="post" enctype="multipart/form-data">
+		<input type="file" name="file" id="file" accept=".adi,.adif,.log">
+	</form>
+
+	<h2>Your Globe</h2>
+	<div id="preview_globe"></div>
+
+	<h2>Globe Source Code:</h2>
+	<p style="text-decoration: line-through;">(Embed on your own website!)</p>
+
+	<pre id="globe_source"></pre>
+	<button id="copy_globe_source" disabled>Click to copy source to clipboard</button>
+	<br>
+	<small>Yet to be implimented, I apologize for the inconvenience. Check this page's source code with <kbd>CTRL+SHIFT+U</kbd>.
+	Copy the <code>arcsData</code> array and use it for the <code>coords</code> variable.
+	<br> Don't forget to grab the <code>/assets/js/gridstuff.js</code> file.
+	</small>
+
+	<script src="//unpkg.com/globe.gl"></script>
+	<script src="/assets/js/gridstuff.js"></script>
+	<script>
+		// Prevent default and upload locally for processing with JS
+		const form = document.querySelector('form');
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+		});
+
+		// Get file input element
+		const fileInput = document.getElementById('file');
+
+		// Listen for file selection
+		fileInput.addEventListener('change', (event) => {
+			const file = event.target.files[0];
+			const reader = new FileReader();
+
+			// // Read file as text
+			reader.readAsText(file);
+
+			// Listen for file load
+			reader.addEventListener('load', (event) => {
+				const adif = event.target.result;
+
+				console.debug(adif);
+
+				// Process it
+				processAdif(adif);
+			});
+
+		});
+
+		// Process ADIF file
+		function processAdif(adif) {
+			// Get all instances of <grid:[0-9]> and <my_gridsquare found in the adif file
+			const gridRegex = /<gridsquare:[4|6]>([A-Za-z0-9]{4,6})/g;
+			const myGridRegex = /<my_gridsquare:[4|6]>([A-Za-z0-9]{4,6})/g;
+
+			const grids = adif.match(gridRegex);
+			const myGrids = adif.match(myGridRegex);
+
+			console.log("Remote Grids: ", grids);
+			console.log("Local Grids: ", myGrids);
+
+
+			// Remove the <gridsquare:6> and <my_gridsquare:6> tags
+			const cleanGrids = grids ? grids.map(grid => grid.replace(/<gridsquare:[4|6]>/, '')) : [];
+			const cleanMyGrids = myGrids ? myGrids.map(grid => grid.replace(/<my_gridsquare:[4|6]>/, '')) : [];
+
+			console.log("Remote Grids: ", cleanGrids);
+			console.log("Local Grids: ", cleanMyGrids);
+
+			// Throw an alert if there are differing numbers of grids
+			if (cleanGrids.length !== cleanMyGrids.length) {
+				alert("The number of grids in the file does not match the number of grids in the my_gridsquare field. This may occur if a grid is missing in a QSO. Especially check IOTA logs.");
+				return;
+			}
+
+
+			coords = generateGlobeSource(cleanMyGrids, cleanGrids);
+
+			// Display globe
+			globe = new Globe(document.getElementById('preview_globe'))
+				.globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+				.arcsData(coords)
+				.arcColor('color')
+				.arcDashAnimateTime(2000)
+				.showAtmosphere(true)
+				.arcDashLength(() => Math.random())
+				.arcDashGap(() => Math.random())
+				.arcDashAnimateTime(() => Math.random() * 4000 + 500)
+				.pointOfView({ lat: "00.0", lng: "00.0", altitude: 2 });
+		}
+
+		// Generate globe source code
+		function generateGlobeSource(localGrids, remoteGrids) {
+			console.log("Grids", localGrids, remoteGrids);
+
+			// Convert grids to Coordinates via HamGridSquare.toLatLon
+			const localCoords = localGrids.map(grid => HamGridSquare.toLatLon(grid));
+			const remoteCoords = remoteGrids.map(grid => HamGridSquare.toLatLon(grid));
+
+			console.log("Local Coords", localCoords);
+			console.log("Remote Coords", remoteCoords);
+
+			return arcGrids(localCoords, remoteCoords);
+		}
+
+		// Generate arcs for globe
+		function arcGrids(localCoords, remoteCoords) {
+			// arcs from source to qso
+			const arcsData = localCoords.map((source, i) => ({
+				startLat: source[0],
+				startLng: source[1],
+				endLat: remoteCoords[i][0],
+				endLng: remoteCoords[i][1],
+				color: ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]
+			}));
+
+			console.log("Arcs", arcsData);
+
+			// Generate globe source code
+			const globeSource = arcsData.map((arc, i) => {
+				return `{
+					startLat: ${arc.startLat},
+					startLng: ${arc.startLng},
+					endLat: ${arc.endLat},
+					endLng: ${arc.endLng},
+					color: '${arc.color}'
+				}`;
+			});
+
+			console.log("Globe Source", globeSource);
+
+			// Display globe source code
+			const globeSourceElement = document.getElementById('globe_source');
+			globeSourceElement.innerText = `const arcsData = [${globeSource.join(',\n')}];`;
+
+			return arcsData;
+		}
+
+		// Copy source code to clipboard
+		const copyButton = document.getElementById('copy_globe_source');
+		copyButton.addEventListener('click', (event) => {
+			const source = document.getElementById('globe_source');
+			const range = document.createRange();
+			range.selectNode(source);
+			window.getSelection().removeAllRanges();
+			window.getSelection().addRange(range);
+			document.execCommand('copy');
+			window.getSelection().removeAllRanges();
+
+			alert('Source code copied to clipboard!');
+		});
+	</script>
+</body>
+
+</html>
