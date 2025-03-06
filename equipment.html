@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>KR4AUW</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #000;
+			color: #fff;
+			font-family: 'Courier New', Courier, monospace;
+		}
+
+		#globeViz {
+			width: 100vw;
+			height: 100vh;
+		}
+
+		#header {
+			position: absolute;
+			top: calc(30% - 25px);
+			left: 0;
+			width: 100%;
+			height: 1.5em;
+			color: #fff;
+			text-align: center;
+			line-height: 50px;
+			font-size: 2.5em;
+			text-shadow: #fff 0px 0px 8px;
+		}
+
+		#equipment_list {
+			/* horizontally centered */
+			position: absolute;
+			top: calc(50% - 25px);
+			left: 0;
+			width: 100%;
+			height: 50px;
+			color: #fff;
+			text-align: center;
+			line-height: 50px;
+			font-size: 20px;
+			text-shadow: #fff 0px 0px 10px;
+		}
+
+		ul {
+			list-style-type: none;
+			padding: 0;
+			color: white;
+			text-shadow: none;
+		}
+
+		/* modal with blurred background */
+		#modal {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5);
+			backdrop-filter: blur(5px);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			z-index: 999;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="modal">
+		<div id="globeViz"></div>
+
+		<div id="header">
+			My equipment:
+		</div>
+		<div id="equipment_list">
+			<ul>
+				<li>
+					<a href="https://www.baofengradio.com/products/dm-1701" target="_blank"
+						rel="noopener noreferrer">Baofeng DM-1701 UHF/VHF Handheld</a>
+				</li>
+				<li>
+					<a href="https://www.hamradio.com/detail.cfm?pid=H0-016772" target="_blank"
+						rel="noopener noreferrer">Xiegu G90 HF Transceiver .5-30Mhz SDR</a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+	<script src="//unpkg.com/globe.gl"></script>
+	<script>
+
+		// Taken directly from https://raw.githubusercontent.com/vasturiano/globe.gl/refs/heads/master/example/random-arcs/index.html with a minor edit for the number of arcs generated
+		function randomIntFromInterval(min, max) { // min and max included 
+			return Math.floor(Math.random() * (max - min + 1) + min);
+		}
+
+		const N = randomIntFromInterval(1, 100);
+
+		const arcsData = [...Array(N).keys()].map(() => ({
+			startLat: (Math.random() - 0.5) * 180,
+			startLng: (Math.random() - 0.5) * 360,
+			endLat: (Math.random() - 0.5) * 180,
+			endLng: (Math.random() - 0.5) * 360,
+			color: [['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)], ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]]
+		}));
+
+		new Globe(document.getElementById('globeViz'))
+			.globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+			.arcsData(arcsData)
+			.arcColor('color')
+			.arcDashLength(() => Math.random())
+			.arcDashGap(() => Math.random())
+			.arcDashAnimateTime(() => Math.random() * 4000 + 500);
+
+	</script>
+</body>
+
+</html>
