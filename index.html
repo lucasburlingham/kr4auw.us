@@ -112,8 +112,7 @@
 			color: #000;
 			font-family: 'RedHatTextVF', sans-serif;
 		}
-	</style>
-	<style>
+
 		.space_equally {
 			margin: 10px;
 			border: #000 1px solid;
@@ -146,6 +145,42 @@
 			text-decoration: dotted 1px;
 		}
 	</style>
+
+	<style>
+		#article_grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+			grid-gap: 20px;
+			padding: 20px;
+		}
+
+		.article-card {
+			background-color: #ffffff;
+			color: #000000;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px #00000055;
+		}
+
+		#logbook {
+			padding: 20px;
+		}
+
+		@media screen and (max-width: 600px) {
+			.article-card {
+				padding: 10px;
+			}
+
+			#article_grid {
+				grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			}
+
+			#logbook {
+				padding: 10px;
+			}
+
+		}
+	</style>
 </head>
 
 <body>
@@ -161,9 +196,6 @@
 	<div id="description">
 		<i>FM05nc, Technician Class</i>
 	</div>
-	<!-- <div id="equipment">
-		<i><a href="equipment.html">My Equipment</a></i>
-	</div> -->
 
 	<a href="#content" id="scroll_past_globe">
 		Scroll Past Globe
@@ -219,13 +251,26 @@
 		<p>Never received one, but as soon as I do, I'll design one and get it in the mail using your return address.
 		</p>
 
-		<h2>
-			What's the deal with the globe?
-		</h2>
-		<p>
-			It's cool, right? It's a globe that shows the contacts I've made so far. You can make yours at <a
-				href="/globegenerator/index.html">/globegenerator</a> by uploading an ADIF file of your own.
-		</p>
+		<div id="article_grid">
+			<div class="article-card">
+				<h3>What's the deal with the globe?</h3>
+				<p>It's cool, right? It's a globe that shows the contacts I've made so far. You can make yours at <a
+						href="/globegenerator/index.html">/globegenerator</a> by uploading an ADIF file of your own.</p>
+				<p>
+					Batteries not included, so use <kbd>CTRL+SHIFT+U</kbd> to see how I've setup the page.
+				</p>
+			</div>
+			<div class="article-card">
+				<h3>What equipment do I use?</h3>
+				<p>I have a Xiegu G90, and use a 7Ah lead acid battery for power. I'm trying to get a converted ATX
+					powersupply going as a bench PSU, but haven't figured out the voltages quite yet. </p>
+				<p><i>
+						I wouldn't reccomend a lead acid battery. Use a LiFePO4 battery, as it's going to be lighter,
+						keep it's voltage better, and last longer.
+					</i></p>
+			</div>
+		</div>
+
 
 		<hr>
 		<div id="logbook">
@@ -239,28 +284,28 @@
 	<script src="assets/js/gridstuff.js"></script>
 	<script>
 		// grids from qsos in array
-		source_grids = ['FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05MF', 'FM05MF', 'FM05MF'];
+		// source_grids = ['FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05MF', 'FM05MF', 'FM05MF'];
 
-		qso_grids = ["EM66", "EL95", "EN29", "EN29", "EM10", "FI06", "DM79", "FK68", "GF05", "GG66", "FK94", "DN71", "FF30", "DM68", "DM79", "GF15vd", "DM65", "DM79", "PN78", "DM33", "GG53", "QN03", "DM43", "DN55", "DM34rs", "DM79", "FJ09", "EK09", "DM43", "DM42", "DM79", "GN38", "FK58", "DM93", "FM04", "FK93", "JN11", "KP20", "FF46", "GG29", "DM26", "DM79", "FK87", "DM26", "QF56", "FK58", "FK58Bm", "DM43DF", "DM79ON", "DN44KP", "EM16XQ", "DM78", "DM42ng", "JN72", "FK42xo", "EM12HU", "EK57", "CM95rr", "CN85rp", "EN35jb",];
+		// qso_grids = ["EM66", "EL95", "EN29", "EN29", "EM10", "FI06", "DM79", "FK68", "GF05", "GG66", "FK94", "DN71", "FF30", "DM68", "DM79", "GF15vd", "DM65", "DM79", "PN78", "DM33", "GG53", "QN03", "DM43", "DN55", "DM34rs", "DM79", "FJ09", "EK09", "DM43", "DM42", "DM79", "GN38", "FK58", "DM93", "FM04", "FK93", "JN11", "KP20", "FF46", "GG29", "DM26", "DM79", "FK87", "DM26", "QF56", "FK58", "FK58Bm", "DM43DF", "DM79ON", "DN44KP", "EM16XQ", "DM78", "DM42ng", "JN72", "FK42xo", "EM12HU", "EK57", "CM95rr", "CN85rp", "EN35jb",];
 
-		qso_coords = [];
-		source_coords = [];
-
-
-		for (let i = 0; i < source_grids.length; i++) {
-			// console.info("Source Grid " + source_grids[i]);
-			source_coords.push(HamGridSquare.toLatLon(source_grids[i]));
-
-			// console.log(source_coords[i]);
-		}
+		// qso_coords = [];
+		// source_coords = [];
 
 
-		for (let i = 0; i < qso_grids.length; i++) {
-			// console.info("QSO Grid " + qso_grids[i]);
-			qso_coords.push(HamGridSquare.toLatLon(qso_grids[i]));
+		// for (let i = 0; i < source_grids.length; i++) {
+		// 	// console.info("Source Grid " + source_grids[i]);
+		// 	source_coords.push(HamGridSquare.toLatLon(source_grids[i]));
 
-			// console.log(qso_coords[i]);
-		}
+		// 	// console.log(source_coords[i]);
+		// }
+
+
+		// for (let i = 0; i < qso_grids.length; i++) {
+		// 	// console.info("QSO Grid " + qso_grids[i]);
+		// 	qso_coords.push(HamGridSquare.toLatLon(qso_grids[i]));
+
+		// 	// console.log(qso_coords[i]);
+		// }
 
 		// console.log(source_coords.length);
 
@@ -270,13 +315,469 @@
 		// MAKE SURE THE DUDE DOWN IN ST. BARTHALEMY ISN'T MISSING, HIS GRID IS FK87!
 
 		// arcs from source to qso
-		const arcsData = source_coords.map((source, i) => ({
-			startLat: source[0],
-			startLng: source[1],
-			endLat: qso_coords[i][0],
-			endLng: qso_coords[i][1],
-			color: ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]
-		}));
+		// const arcsData = source_coords.map((source, i) => ({
+		// 	startLat: source[0],
+		// 	startLng: source[1],
+		// 	endLat: qso_coords[i][0],
+		// 	endLng: qso_coords[i][1],
+		// 	color: ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]
+		// }));
+
+		const arcsData = [{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 36.5,
+			endLng: -87,
+			color: 'blue'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 25.5,
+			endLng: -81,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 49.5,
+			endLng: -95,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 49.5,
+			endLng: -95,
+			color: 'red'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 30.5,
+			endLng: -97,
+			color: 'blue'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -3.5,
+			endLng: -79,
+			color: 'green'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 39.5,
+			endLng: -105,
+			color: 'green'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 18.5,
+			endLng: -67,
+			color: 'green'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -34.5,
+			endLng: -59,
+			color: 'blue'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -23.5,
+			endLng: -47,
+			color: 'green'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 14.5,
+			endLng: -61,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 41.5,
+			endLng: -105,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -39.5,
+			endLng: -73,
+			color: 'blue'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 38.5,
+			endLng: -107,
+			color: 'red'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 39.5,
+			endLng: -105,
+			color: 'blue'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -34.854166666666664,
+			endLng: -56.208333333333336,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 35.5,
+			endLng: -107,
+			color: 'green'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 39.5,
+			endLng: -105,
+			color: 'blue'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 48.5,
+			endLng: 135,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 33.5,
+			endLng: -113,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -26.5,
+			endLng: -49,
+			color: 'green'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 43.5,
+			endLng: 141,
+			color: 'green'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 33.5,
+			endLng: -111,
+			color: 'red'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 45.5,
+			endLng: -109,
+			color: 'white'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 34.770833333333336,
+			endLng: -112.54166666666667,
+			color: 'green'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 39.5,
+			endLng: -105,
+			color: 'blue'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 9.5,
+			endLng: -79,
+			color: 'blue'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 19.5,
+			endLng: -99,
+			color: 'green'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 33.5,
+			endLng: -111,
+			color: 'blue'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 32.5,
+			endLng: -111,
+			color: 'blue'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 39.5,
+			endLng: -105,
+			color: 'blue'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 48.5,
+			endLng: -53,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 18.5,
+			endLng: -69,
+			color: 'green'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 33.5,
+			endLng: -101,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 34.5,
+			endLng: -79,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 13.5,
+			endLng: -61,
+			color: 'red'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 41.5,
+			endLng: 3,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 60.5,
+			endLng: 25,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -33.5,
+			endLng: -71,
+			color: 'blue'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -20.5,
+			endLng: -55,
+			color: 'green'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 36.5,
+			endLng: -115,
+			color: 'blue'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 39.5,
+			endLng: -105,
+			color: 'red'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 17.5,
+			endLng: -63,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 36.5,
+			endLng: -115,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -33.5,
+			endLng: 151,
+			color: 'blue'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 18.5,
+			endLng: -69,
+			color: 'blue'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 18.520833333333332,
+			endLng: -72.54166666666667,
+			color: 'red'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 31.895833333333332,
+			endLng: -114.375,
+			color: 'blue'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 38.229166666666664,
+			endLng: -107.45833333333333,
+			color: 'red'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 43.3125,
+			endLng: -113.79166666666667,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 35.354166666666664,
+			endLng: -98.70833333333333,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 38.5,
+			endLng: -105,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 32.270833333333336,
+			endLng: -110.875,
+			color: 'blue'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 42.5,
+			endLng: 15,
+			color: 'blue'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 12.604166666666666,
+			endLng: -70.04166666666667,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 31.520833333333332,
+			endLng: -100.04166666666667,
+			color: 'red'
+		},
+		{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 17.5,
+			endLng: -89,
+			color: 'white'
+		},
+		{
+			startLat: 35.5,
+			startLng: -79,
+			endLat: 35.729166666666664,
+			endLng: -120.54166666666667,
+			color: 'white'
+		},
+		{
+			startLat: 35.5,
+			startLng: -79,
+			endLat: 45.645833333333336,
+			endLng: -122.54166666666667,
+			color: 'white'
+		},
+		{
+			startLat: 35.5,
+			startLng: -79,
+			endLat: 45.0625,
+			endLng: -93.20833333333333,
+			color: 'green'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 18.5,
+			endLng: -69,
+			color: 'red'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 48.5,
+			endLng: 17,
+			color: 'red'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: -5.5,
+			endLng: 13,
+			color: 'white'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 41.5,
+			endLng: 1,
+			color: 'green'
+		},
+		{
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 39.9375,
+			endLng: -105.04166666666667,
+			color: 'white'
+		}];
 
 		globe = new Globe(document.getElementById('globeViz'))
 			.globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
