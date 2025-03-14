@@ -180,6 +180,60 @@
 			}
 
 		}
+
+		.italic {
+			font-style: italic;
+		}
+	</style>
+	<!-- Taken directly from https://www.w3schools.com/howto/howto_css_tooltip.asp -->
+	<style>
+		/* Tooltip container */
+		.tooltip {
+			position: relative;
+			display: inline-block;
+			border-bottom: 1px dotted black;
+			/* If you want dots under the hoverable text */
+		}
+
+		/* Tooltip text */
+		.tooltip .tooltiptext {
+			visibility: hidden;
+			width: 120px;
+			background-color: #555;
+			color: #fff;
+			text-align: center;
+			padding: 5px 0;
+			border-radius: 6px;
+
+			/* Position the tooltip text */
+			position: absolute;
+			z-index: 1;
+			bottom: 125%;
+			left: 50%;
+			margin-left: -60px;
+
+			/* Fade in tooltip */
+			opacity: 0;
+			transition: opacity 0.3s;
+		}
+
+		/* Tooltip arrow */
+		.tooltip .tooltiptext::after {
+			content: "";
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			margin-left: -5px;
+			border-width: 5px;
+			border-style: solid;
+			border-color: #555 transparent transparent transparent;
+		}
+
+		/* Show the tooltip text when you mouse over the tooltip container */
+		.tooltip:hover .tooltiptext {
+			visibility: visible;
+			opacity: 1;
+		}
 	</style>
 </head>
 
@@ -244,7 +298,11 @@
 		<h2>
 			How to Contact Me over the air.
 		</h2>
-		<p>I mostly run FT8. I'm a technician, so I'm limited to 10m on HF.</p>
+		<p>I mostly run FT8. I'm a technician, so I'm limited to 10m on HF.
+
+			<br>
+			GMRS is also an option, I'm waiting on both radios (pair of GM-15 Pro's) and a callsign.
+		</p>
 		<h2>
 			What about QSL Cards?
 		</h2>
@@ -263,11 +321,17 @@
 			<div class="article-card">
 				<h3>What equipment do I use?</h3>
 				<p>I have a Xiegu G90, and use a 7Ah lead acid battery for power. I'm trying to get a converted ATX
-					powersupply going as a bench PSU, but haven't figured out the voltages quite yet. </p>
-				<p><i>
-						I wouldn't recommend a lead acid battery. Use a LiFePO4 battery, as it's going to be lighter,
-						keep it's voltage better, and last longer.
-					</i></p>
+					powersupply going as a bench PSU, but haven't figured out the voltages quite yet.</p>
+				<p>
+					I also have a Baofeng DM-1701 handheld for 2m/70cm, and a pair of GM-15 Pro's on the way for GMRS
+					(I'll definately be reflashing them to work on Ham bands as well).
+				</p>
+				<small class="italic">
+					I wouldn't recommend a lead acid battery. Use a <div class="tooltip">LiFePO<sub>4</sub> <span
+							class="tooltiptext">Lithium (Li) Iron (Fe) Phosphate (P<sub>4</sub>)</span></div>
+					battery, as it's going to be lighter, keep it's voltage longer throughout a discharge cycle, and
+					last longer.
+				</small>
 			</div>
 			<div class="article-card">
 				<h3>
@@ -310,6 +374,13 @@
 				src="https://logbook.qrz.com/lbstat/KR4AUW/" style="width: 100%;" tabindex="-1" width="640"></iframe>
 		</div>
 		<hr>
+		<div id="awards">
+			<h3>Awards</h3>
+			<img src="https://static.qrz.com/static/qrz/awards/ribbon.WorldRadioFriendship.png"
+				alt="QRZ: World Radio Friendship" style="border: 3px solid #4f499d; border-radius: 1rem;" height="40">
+			<img src="https://static.qrz.com/static/qrz/awards/ribbon.QRZ30g3.svg" alt="QRZ: 30 Years of QRZ"
+				style="border: 3px solid #7991aa; background-color: #7991aa; border-radius: 1rem; padding: 1px;" height="40">
+		</div>
 	</section>
 	<script src="//unpkg.com/globe.gl"></script>
 
