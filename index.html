@@ -248,7 +248,7 @@
 		KR4AUW
 	</div>
 	<div id="description">
-		<i>FM05nc, Technician Class</i>
+		<i>FM05nc, General Class</i>
 	</div>
 
 	<a href="#content" id="scroll_past_globe">
@@ -298,8 +298,7 @@
 		<h2>
 			How to Contact Me over the air.
 		</h2>
-		<p>I mostly run FT8. I'm a technician, so I'm limited to 10m on HF. Tell me to QSY to another freq in the free
-			text and we'll figure it out.
+		<p>I mostly run FT8. Having upgraded to General, I can now hop onto most bands.
 			<br>
 			GMRS is also an option, though it'll be rare that I monitor it. My callsign is WSHM613.
 		</p>
@@ -313,7 +312,8 @@
 		</p>
 
 		<div id="qsl-carousel">
-			<img src="/assets/images/qsl-aruba.jpeg" alt="P4/KE4TT QSL Card" class="space_equally" style="width: 100%; max-width: 600px; border-radius: 5px; border: 1px solid #00000055;">
+			<img src="/assets/images/qsl-aruba.jpeg" alt="P4/KE4TT QSL Card" class="space_equally"
+				style="width: 100%; max-width: 600px; border-radius: 5px; border: 1px solid #00000055;">
 		</div>
 
 		<div id="article_grid">
@@ -327,11 +327,10 @@
 			</div>
 			<div class="article-card">
 				<h3>What equipment do I use?</h3>
-				<p>I have a Xiegu G90, and use a 7Ah lead acid battery for power. I'm trying to get a converted ATX
-					powersupply going as a bench PSU, but haven't figured out the voltages quite yet.</p>
+				<p>I have a Xiegu G90, and use a 7Ah lead acid battery for power.</p>
 				<p>
 					I also have a Baofeng DM-1701 handheld for 2m/70cm, and a pair of GM-15 Pro's that sit in my aid/go
-					bag.
+					bag. A QRZ Jumpstart kit with trucker mic is on the way.
 				</p>
 				<small class="italic">
 					I wouldn't recommend a lead acid battery. Use a <div class="tooltip">LiFePO<sub>4</sub> <span
@@ -360,14 +359,16 @@
 					Primarily at US-2723 Carvers Creek State Park, about 15 minutes away from my house.
 				</p>
 				<p>
-					SOTA? Not yet. But hopefully someday. Neither the Sandhills of NC or plains of Indiana are particularly
+					SOTA? Not yet. But hopefully someday. Neither the Sandhills of NC or plains of Indiana are
+					particularly
 					mountainous.
 				</p>
 			</div>
 			<div class="article-card">
 				<h3>Have you contested?</h3>
 				<p>I submitted a log for the FT8/FT4 showcase in the 2025 NC QSO Party, and was really excited to get
-					the results... and be dead last (K4MN won). Other than that, I was there for K4MN's Winter Field Day showing,
+					the results... and be dead last (K4MN won). Other than that, I was there for K4MN's Winter Field Day
+					showing,
 					which was pretty cool. I'm definitely going to try to make it out for Summer Field day and the
 					Indiana QSO party.
 				</p>
@@ -433,462 +434,581 @@
 		// 	startLng: source[1],
 		// 	endLat: qso_coords[i][0],
 		// 	endLng: qso_coords[i][1],
-		// 	color: ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]
+		// 	color: ['red', 'white', 'orange', 'green'][Math.round(Math.random() * 3)]
 		// }));
 
 		const arcsData = [{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 36.5,
 			endLng: -87,
-			color: 'blue'
+			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 25.5,
 			endLng: -81,
 			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 49.5,
 			endLng: -95,
 			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 49.5,
 			endLng: -95,
-			color: 'red'
+			color: 'orange'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 30.5,
 			endLng: -97,
-			color: 'blue'
+			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: -3.5,
 			endLng: -79,
-			color: 'green'
+			color: 'orange'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 39.5,
 			endLng: -105,
-			color: 'green'
+			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 18.5,
 			endLng: -67,
 			color: 'green'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: -34.5,
 			endLng: -59,
-			color: 'blue'
+			color: 'orange'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: -23.5,
 			endLng: -47,
-			color: 'green'
+			color: 'orange'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 14.5,
 			endLng: -61,
-			color: 'white'
+			color: 'orange'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 41.5,
 			endLng: -105,
-			color: 'white'
-		},
-		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: -39.5,
-			endLng: -73,
-			color: 'blue'
-		},
-		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: 38.5,
-			endLng: -107,
 			color: 'red'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: 39.5,
-			endLng: -105,
-			color: 'blue'
-		},
-		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: -34.854166666666664,
-			endLng: -56.208333333333336,
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: -39.5,
+			endLng: -73,
 			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 38.5,
+			endLng: -107,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 39.5,
+			endLng: -105,
+			color: 'red'
+		},
+		{
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: -34.85416,
+			endLng: -56.208333,
+			color: 'orange'
+		},
+		{
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 35.5,
 			endLng: -107,
 			color: 'green'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 39.5,
 			endLng: -105,
-			color: 'blue'
+			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 48.5,
 			endLng: 135,
-			color: 'white'
+			color: 'orange'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: 33.5,
-			endLng: -113,
-			color: 'white'
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 39.5,
+			endLng: -119,
+			color: 'orange'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: -26.5,
 			endLng: -49,
-			color: 'green'
+			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 43.5,
 			endLng: 141,
-			color: 'green'
+			color: 'orange'
 		},
 		{
-			startLat: 33.895833333333336,
+			startLat: 33.895833,
 			startLng: -81.625,
 			endLat: 33.5,
 			endLng: -111,
 			color: 'red'
 		},
 		{
-			startLat: 33.895833333333336,
+			startLat: 33.895833,
 			startLng: -81.625,
 			endLat: 45.5,
 			endLng: -109,
+			color: 'green'
+		},
+		{
+			startLat: 33.895833,
+			startLng: -81.625,
+			endLat: 34.770833,
+			endLng: -112.54166,
 			color: 'white'
 		},
 		{
-			startLat: 33.895833333333336,
-			startLng: -81.625,
-			endLat: 34.770833333333336,
-			endLng: -112.54166666666667,
-			color: 'green'
-		},
-		{
-			startLat: 33.895833333333336,
+			startLat: 33.895833,
 			startLng: -81.625,
 			endLat: 39.5,
 			endLng: -105,
-			color: 'blue'
+			color: 'red'
 		},
 		{
-			startLat: 33.895833333333336,
+			startLat: 33.895833,
 			startLng: -81.625,
 			endLat: 9.5,
 			endLng: -79,
-			color: 'blue'
+			color: 'red'
 		},
 		{
-			startLat: 33.895833333333336,
+			startLat: 33.895833,
 			startLng: -81.625,
 			endLat: 19.5,
 			endLng: -99,
-			color: 'green'
+			color: 'orange'
 		},
 		{
-			startLat: 33.895833333333336,
+			startLat: 33.895833,
 			startLng: -81.625,
 			endLat: 33.5,
 			endLng: -111,
-			color: 'blue'
+			color: 'orange'
 		},
 		{
-			startLat: 33.895833333333336,
+			startLat: 33.895833,
 			startLng: -81.625,
 			endLat: 32.5,
 			endLng: -111,
-			color: 'blue'
+			color: 'orange'
 		},
 		{
-			startLat: 33.895833333333336,
+			startLat: 33.895833,
 			startLng: -81.625,
 			endLat: 39.5,
 			endLng: -105,
-			color: 'blue'
+			color: 'orange'
 		},
 		{
-			startLat: 33.895833333333336,
+			startLat: 33.895833,
 			startLng: -81.625,
 			endLat: 48.5,
 			endLng: -53,
 			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 18.5,
 			endLng: -69,
+			color: 'orange'
+		},
+		{
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 33.5,
+			endLng: -101,
 			color: 'green'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: 33.5,
-			endLng: -101,
-			color: 'white'
-		},
-		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 34.5,
 			endLng: -79,
 			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 13.5,
 			endLng: -61,
+			color: 'orange'
+		},
+		{
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 41.5,
+			endLng: 3,
 			color: 'red'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: 41.5,
-			endLng: 3,
-			color: 'white'
-		},
-		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 60.5,
 			endLng: 25,
-			color: 'white'
+			color: 'orange'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: -33.5,
 			endLng: -71,
-			color: 'blue'
+			color: 'red'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: -20.5,
 			endLng: -55,
 			color: 'green'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 36.5,
 			endLng: -115,
-			color: 'blue'
+			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 39.5,
 			endLng: -105,
-			color: 'red'
+			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 17.5,
 			endLng: -63,
-			color: 'white'
+			color: 'orange'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 36.5,
 			endLng: -115,
-			color: 'white'
+			color: 'green'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: -33.5,
 			endLng: 151,
-			color: 'blue'
+			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 18.5,
 			endLng: -69,
-			color: 'blue'
-		},
-		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: 18.520833333333332,
-			endLng: -72.54166666666667,
 			color: 'red'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: 31.895833333333332,
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 18.52082,
+			endLng: -72.54166,
+			color: 'green'
+		},
+		{
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 31.89582,
 			endLng: -114.375,
-			color: 'blue'
+			color: 'green'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: 38.229166666666664,
-			endLng: -107.45833333333333,
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 38.22916,
+			endLng: -107.4583,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 43.3125,
+			endLng: -113.79166,
 			color: 'red'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: 43.3125,
-			endLng: -113.79166666666667,
-			color: 'white'
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 35.35416,
+			endLng: -98.7083,
+			color: 'orange'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: 35.354166666666664,
-			endLng: -98.70833333333333,
-			color: 'white'
-		},
-		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 38.5,
 			endLng: -105,
 			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: 32.270833333333336,
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 32.270833,
 			endLng: -110.875,
-			color: 'blue'
+			color: 'green'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
 			endLat: 42.5,
 			endLng: 15,
-			color: 'blue'
-		},
-		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: 12.604166666666666,
-			endLng: -70.04166666666667,
 			color: 'white'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: 31.520833333333332,
-			endLng: -100.04166666666667,
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 12.6041666,
+			endLng: -70.04166,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 31.52082,
+			endLng: -100.04166,
+			color: 'orange'
+		},
+		{
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 17.5,
+			endLng: -89,
+			color: 'green'
+		},
+		{
+			startLat: 35.5,
+			startLng: -79,
+			endLat: 35.72916,
+			endLng: -120.54166,
 			color: 'red'
 		},
 		{
-			startLat: 33.770833333333336,
-			startLng: -81.54166666666667,
-			endLat: 17.5,
-			endLng: -89,
-			color: 'white'
-		},
-		{
 			startLat: 35.5,
 			startLng: -79,
-			endLat: 35.729166666666664,
-			endLng: -120.54166666666667,
-			color: 'white'
-		},
-		{
-			startLat: 35.5,
-			startLng: -79,
-			endLat: 45.645833333333336,
-			endLng: -122.54166666666667,
+			endLat: 45.645833,
+			endLng: -122.54166,
 			color: 'white'
 		},
 		{
 			startLat: 35.5,
 			startLng: -79,
 			endLat: 45.0625,
-			endLng: -93.20833333333333,
-			color: 'green'
+			endLng: -93.2083,
+			color: 'orange'
 		},
 		{
-			startLat: 33.895833333333336,
+			startLat: 33.895833,
 			startLng: -81.625,
 			endLat: 18.5,
 			endLng: -69,
-			color: 'red'
+			color: 'orange'
 		},
 		{
-			startLat: 33.895833333333336,
+			startLat: 33.895833,
 			startLng: -81.625,
 			endLat: 48.5,
 			endLng: 17,
-			color: 'red'
-		},
-		{
-			startLat: 33.895833333333336,
-			startLng: -81.625,
-			endLat: -5.5,
-			endLng: 13,
 			color: 'white'
 		},
 		{
-			startLat: 33.895833333333336,
+			startLat: 33.895833,
+			startLng: -81.625,
+			endLat: -5.5,
+			endLng: 13,
+			color: 'orange'
+		},
+		{
+			startLat: 33.895833,
 			startLng: -81.625,
 			endLat: 41.5,
 			endLng: 1,
+			color: 'orange'
+		},
+		{
+			startLat: 33.895833,
+			startLng: -81.625,
+			endLat: 39.9375,
+			endLng: -105.04166,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: -34.5,
+			endLng: -59,
+			color: 'orange'
+		},
+		{
+			startLat: 35.10416,
+			startLng: -78.875,
+			endLat: -22.2291666,
+			endLng: 166.45833,
+			color: 'white'
+		},
+		{
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 35.5,
+			endLng: -137,
 			color: 'green'
 		},
 		{
-			startLat: 33.895833333333336,
+			startLat: 35.10416,
+			startLng: -78.875,
+			endLat: 40.72916,
+			endLng: -74.04166,
+			color: 'orange'
+		},
+		{
+			startLat: 35.10416,
+			startLng: -78.875,
+			endLat: 40.9375,
+			endLng: -74.2083,
+			color: 'green'
+		},
+		{
+			startLat: 33.895833,
 			startLng: -81.625,
-			endLat: 39.9375,
-			endLng: -105.04166666666667,
+			endLat: 45.5,
+			endLng: -75,
+			color: 'green'
+		},
+		{
+			startLat: 33.895833,
+			startLng: -81.625,
+			endLat: 41.5,
+			endLng: -85,
+			color: 'green'
+		},
+		{
+			startLat: 33.895833,
+			startLng: -81.625,
+			endLat: 40.5,
+			endLng: -83,
+			color: 'green'
+		},
+		{
+			startLat: 33.895833,
+			startLng: -81.625,
+			endLat: 30.5,
+			endLng: -97,
+			color: 'green'
+		},
+		{
+			startLat: 33.895833,
+			startLng: -81.625,
+			endLat: 43.1875,
+			endLng: 8.708333,
+			color: 'white'
+		},
+		{
+			startLat: 33.895833,
+			startLng: -81.625,
+			endLat: 34.5,
+			endLng: -87,
+			color: 'green'
+		},
+		{
+			startLat: 33.895833,
+			startLng: -81.625,
+			endLat: 44.5,
+			endLng: 11,
+			color: 'orange'
+		},
+		{
+			startLat: 33.895833,
+			startLng: -81.625,
+			endLat: 40.395833,
+			endLng: -3.708333,
+			color: 'orange'
+		},
+		{
+			startLat: 33.895833,
+			startLng: -81.625,
+			endLat: 52.5,
+			endLng: 7,
+			color: 'orange'
+		},
+		{
+			startLat: 35.10416,
+			startLng: -78.875,
+			endLat: 45.645833,
+			endLng: -93.04166,
+			color: 'red'
+		},
+		{
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 36.5,
+			endLng: -97,
+			color: 'red'
+		},
+		{
+			startLat: 33.770833,
+			startLng: -81.54166,
+			endLat: 20.5,
+			endLng: -75,
 			color: 'white'
 		}];
 
