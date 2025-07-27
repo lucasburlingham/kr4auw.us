@@ -5,7 +5,7 @@ from datetime import datetime
 from urllib.parse import urlparse
 import matplotlib.pyplot as plt
 
-urls = ['https://www.hamradio.com/detail.cfm?pid=H0-016772', 'https://www.radioddity.com/products/xiegu-g90-hf-transceiver', 'https://www.amazon.com/dp/B08X6Z6KN2']
+urls = ['https://www.hamradio.com/detail.cfm?pid=H0-016772', 'https://www.radioddity.com/products/xiegu-g90-hf-transceiver', 'https://www.amazon.com/dp/B08X6Z6KN2', "https://www2.randl.com/index.php?main_page=product_info&products_id=75815"]
 hostname = None
 
 prices = []
@@ -20,8 +20,6 @@ def addToDatabase(price, url):
 	c.execute('INSERT INTO prices VALUES (?, ?, ?)', (datetime.today().strftime('%Y-%m-%d'), price.replace('$', ''), hostname))
 	conn.commit()
 	conn.close()
-
-
 
 
 for url in urls:
@@ -57,17 +55,21 @@ for url in urls:
 				whole = whole_elem.text.strip().replace(',', '')
 				fraction = fraction_elem.text.strip()
 				price = "$" + whole + "." + fraction
-   
+
 	elif 'hamradio' in url:
 		parent = soup.find('p', class_='addtoCart')
 		# Get the child strong element and get the inner text
 		price = parent.find('strong').text
+  
+	elif 'randl' in url:
+		parent = soup.find('h2', id='productPrices')
+		if parent:
+			price = parent.find('span', class_='productBasePrice').text.strip()
+
    
 	prices.append(price)
 	addToDatabase(price, url)
 	
- 
-
  
  
 average_price = str(sum([float(price.replace('$', '')) for price in prices]) / len(prices))
@@ -104,6 +106,5 @@ plt.xlabel('Date')
 plt.ylabel('Price')
 plt.title('Prices of Xiegu G90 over time')
 plt.xticks(rotation=45)
-plt.tight_layout()
 plt.savefig('G90_prices.png')
 plt.show()
