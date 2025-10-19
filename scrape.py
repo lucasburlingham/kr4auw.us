@@ -66,7 +66,7 @@ for url in urls:
 		if parent:
 			price = parent.find('span', class_='productBasePrice').text.strip()
 
-   
+
 	prices.append(price)
 	addToDatabase(price, url)
 	
@@ -97,6 +97,17 @@ for row in rows:
 	dates.append(row[0])
 	prices.append(float(row[1]))
 conn.close()
+
+# average the prices for the same date
+date_price_dict = {}
+for i in range(len(dates)):
+	if dates[i] in date_price_dict:
+		date_price_dict[dates[i]].append(prices[i])
+	else:
+		date_price_dict[dates[i]] = [prices[i]]
+  
+dates = list(date_price_dict.keys())
+prices = [sum(date_price_dict[date]) / len(date_price_dict[date]) for date in dates]
 
 # Convert dates to datetime objects
 dates = [datetime.strptime(date, '%Y-%m-%d') for date in dates]
