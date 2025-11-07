@@ -1,2 +1,2 @@
 prices:
-	python3 scrape.py
+	python3 scrape.py > G90_prices.txt

@@ -235,6 +235,38 @@
 			opacity: 1;
 		}
 	</style>
+	<style>
+		/* show five stars */
+		.five-stars::before {
+			content: '★★★★★ ';
+			color: gold;
+			height: 1.2em;
+		}
+
+		.four-stars::before {
+			content: '★★★★☆ ';
+			color: gold;
+			height: 1.2em;
+		}
+
+		.three-stars::before {
+			content: '★★★☆☆ ';
+			color: gold;
+			height: 1.2em;
+		}
+
+		.two-stars::before {
+			content: '★★☆☆☆ ';
+			color: gold;
+			height: 1.2em;
+		}
+
+		.one-star::before {
+			content: '★☆☆☆☆ ';
+			color: gold;
+			height: 1.2em;
+		}
+	</style>
 </head>
 
 <body>
@@ -379,15 +411,48 @@
 			</div>
 		</div>
 		<hr>
+		<div id="equipment">
+			<h3>My Equipment List</h3>
+			<ul>
+				<li>
+					<a class="three-stars" href="https://www.radioddity.com/products/radioddity-db25d" target="_blank" rel="noopener noreferrer">Radioddity DB25-D UHF/VHF DMR Analog 20w Mobile</a>
+				</li>
+				<li>
+					<a class="four-stars" href="https://www.baofengradio.com/products/dm-1701" target="_blank"
+						rel="noopener noreferrer">Baofeng DM-1701 UHF/VHF Handheld</a>
+				</li>
+				<li>
+					<a class="five-stars" href="https://www.hamradio.com/detail.cfm?pid=H0-016772" target="_blank"
+						rel="noopener noreferrer">Xiegu G90 HF Transceiver .5-30Mhz SDR</a>
+				</li>
+				<li>
+					<a class="five-stars" href="https://no.co/genius1" target="_blank" rel="noopener noreferrer">NOCO Genius 1 Battery
+						Charger</a>
+				</li>
+				<li>
+					<a class="five-stars" href="https://www.ebay.com/itm/176825533381" target="_blank" rel="noopener noreferrer">Xiegu
+						G90
+						DIN to 3.5mm Audio Cable</a>
+				</li>
+				<li>
+					<a class="five-stars" href="https://amazon.com/dp/B00IRVQ0F8" target="_blank" rel="noopener noreferrer">Sabrent USB
+						Sound
+						Adapter</a>
+				</li>
+			</ul>
+		</div>
 		<div id="g90-tracker">
 			<h3>I've scripted a scraper in Python to track the prices of the Xiegu G90 over time.</h3>
 			<p>The scraper collects price data from various websites and stores it in a SQLite database. It also
 				generates a plot of the price trends over time, which can be viewed below:</p>
 			<img src="/G90_prices.png" alt="Line plot showing the prices of the Xiegu G90 over time."
-				style="width: 100%; max-width: 600px; border-radius: 5px; border: 1px solid #00000055;">
+				style="width: 100%; max-width: 600px; border-radius: 5px; border: 1px solid #00000055; height: fit-content;">
+				<h3>Text Summary</h3>
+			<pre id="g90_prices_summary" style="overflow-x: auto; background-color: #00000022; padding: 10px; border-radius: 5px; border: 1px solid #00000055;">
+			</pre>
 			<br>
 			<a href="https://github.com/lucasburlingham/kr4auw.us/blob/main/scrape.py">scrape.py on GitHub</a>. <a
-				href="G90_prices.db">Download the database</a>.
+				href="G90_prices.db">Download the database</a>. <a href="G90_prices.txt">Download the text summary</a>.
 		</div>
 		<hr>
 		<div id="logbook">
@@ -1632,6 +1697,14 @@
 			.arcDashGap(() => Math.random())
 			.arcDashAnimateTime(() => Math.random() * 4000 + 500)
 			.pointOfView({ lat: "35.5", lng: "-78.5", altitude: 2 });
+	</script>
+	<script>
+		// Get G90_prices.txt and put them into #g90_prices_summary
+		document.onloaded = fetch('G90_prices.txt')
+			.then(response => response.text())
+			.then(data => {
+				document.getElementById('g90_prices_summary').innerText = data;
+			});
 	</script>
 	<footer>
 		<p>This site is always a work in progress and is &copy; 2025 Lucas Burlingham.</p>
