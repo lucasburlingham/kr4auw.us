@@ -79,8 +79,8 @@
 		// Process ADIF file
 		function processAdif(adif) {
 			// Get all instances of <grid:[0-9]> and <my_gridsquare found in the adif file
-			const gridRegex = /<gridsquare:[4|6]>([A-Za-z0-9]{4,6})/g;
-			const myGridRegex = /<my_gridsquare:[4|6]>([A-Za-z0-9]{4,6})/g;
+			const gridRegex = /<gridsquare:[4|6|8]>([A-Za-z0-9]{4,6})/g;
+			const myGridRegex = /<my_gridsquare:[4|6|8]>([A-Za-z0-9]{4,6})/g;
 
 			const grids = adif.match(gridRegex);
 			const myGrids = adif.match(myGridRegex);
@@ -90,15 +90,15 @@
 
 
 			// Remove the <gridsquare:6> and <my_gridsquare:6> tags
-			const cleanGrids = grids ? grids.map(grid => grid.replace(/<gridsquare:[4|6]>/, '')) : [];
-			const cleanMyGrids = myGrids ? myGrids.map(grid => grid.replace(/<my_gridsquare:[4|6]>/, '')) : [];
+			const cleanGrids = grids ? grids.map(grid => grid.replace(/<gridsquare:[4|6|8]>/, '')) : [];
+			const cleanMyGrids = myGrids ? myGrids.map(grid => grid.replace(/<my_gridsquare:[4|6|8]>/, '')) : [];
 
 			console.log("Remote Grids: ", cleanGrids);
 			console.log("Local Grids: ", cleanMyGrids);
 
 			// Throw an alert if there are differing numbers of grids
 			if (cleanGrids.length !== cleanMyGrids.length) {
-				alert("The number of grids in the file does not match the number of grids in the my_gridsquare field. This may occur if a grid is missing in a QSO. Especially check IOTA logs.");
+				alert("The number of grids in the file does not match the number of grids in the my_gridsquare field. This may occur if a grid is missing in a QSO, the tag count check isn't correct, or if you have mixed capitalization in gridsquares. Especially check IOTA logs.");
 				return;
 			}
 
