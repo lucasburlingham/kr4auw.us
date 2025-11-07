@@ -1,0 +1,5 @@
+The prices of the Xiegu G90 are:
+['$399.95', '$465.00', '$465.00', '$445.00']
+On today, 2025-11-07:
+The average price is $443.74
+The lowest price is $399.95 at https://www.hamradio.com/detail.cfm?pid=H0-016772, which is $43.79 less than the average price.
