@@ -5,7 +5,10 @@ from datetime import datetime
 from urllib.parse import urlparse
 import matplotlib.pyplot as plt
 
-urls = ['https://www.hamradio.com/detail.cfm?pid=H0-016772', 'https://www.radioddity.com/products/xiegu-g90-hf-transceiver', 'https://www.amazon.com/dp/B08X6Z6KN2', "https://www2.randl.com/index.php?main_page=product_info&products_id=75815"]
+urls = ['https://www.hamradio.com/detail.cfm?pid=H0-016772', 
+        'https://www.radioddity.com/products/xiegu-g90-hf-transceiver',
+        'https://www.amazon.com/dp/B08X6Z6KN2', 
+        "https://www2.randl.com/index.php?main_page=product_info&products_id=75815"]
 hostname = None
 
 prices = []
@@ -39,22 +42,24 @@ for url in urls:
 			price = 'Not available'
 
 	elif 'amazon' in url:
-		# <span class="a-price aok-align-center reinventPricePriceToPayMargin priceToPay" data-a-size="xl" data-a-color="base">
-		# <span class="a-offscreen"> </span><span aria-hidden="true"><span class="a-price-symbol">$</span>
-		# <span class="a-price-whole">465<span class="a-price-decimal">.
-		# </span></span><span class="a-price-fraction">00</span></span></span>
+		# <div id="corePrice_feature_div" class="celwidget" data-feature-name="corePrice" data-csa-c-type="widget" data-csa-c-content-id="corePrice" data-csa-c-slot-id="corePrice_feature_div" data-csa-c-asin="B08X6Z6KN2" data-csa-c-is-in-initial-active-row="false" data-csa-c-id="5xz4s9-c15z71-4jbniq-44u0de" data-cel-widget="corePrice_feature_div">
+        # <div data-csa-c-type="widget" data-csa-c-slot-id="apex_dp_offer_display" data-csa-c-content-id="apex_with_rio_cx" data-csa-c-id="9meg2n-xob7h1-fidyg-hdg9e3">
+        # <div class="a-section a-spacing-micro">
+        # <div class="a-section apex-core-price-identifier"> 
+        # <span class="a-price aok-align-center apex-pricetopay-value" data-a-size="xl" data-a-color="base">
+        # <span class="a-offscreen">$465.00</span><span aria-hidden="true">
+        # <span class="a-price-symbol">$</span>
+        # <span class="a-price-whole">465<span class="a-price-decimal">.</span></span>
+        # <span class="a-price-fraction">00</span></span></span>
+        # <span id="taxInclusiveMessage" class="a-size-mini a-color-base aok-align-center aok-nowrap"></span>
+        # </div></div></div>
 
-		# There are multiple elements with class 'a-price'
-		# Find the first occurrence of class 'a-price'
-		parent = soup.find_all('span', class_='a-price')
+		price=corePrice_feature_div = soup.find('div', id='corePrice_feature_div')
+		parent = soup.find_all('span', class_='a-offscreen')
 		if parent:
-			first_parent = parent[0]
-			whole_elem = first_parent.find('span', class_='a-price-whole')
-			fraction_elem = first_parent.find('span', class_='a-price-fraction')
-			if whole_elem and fraction_elem:
-				whole = whole_elem.text.strip().replace(',', '')
-				fraction = fraction_elem.text.strip()
-				price = "$" + whole + "." + fraction
+			price = parent[0].text
+		else:
+			price = 'Not available'
 
 	elif 'hamradio' in url:
 		parent = soup.find('p', class_='addtoCart')
