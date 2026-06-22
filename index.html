@@ -2,70 +2,71 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KR4AUW - WSHM613</title>
-    <style>
-        @font-face {
-            font-family: 'RedHatTextVF';
-            src: url('assets/RedHatTextVF.ttf') format('truetype');
-        }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-            color: #fff;
-            height: 100vh;
-            width: 100vw;
-        }
-        
-        #globeViz {
-            width: 100vw;
-            height: 100vh;
-        }
-        
-        #header {
-            position: absolute;
-            top: calc(50% - 25px);
-            left: 0;
-            width: 100%;
-            height: 50px;
-            color: #fff;
-            text-align: center;
-            line-height: 50px;
-            font-size: 4em;
-            text-shadow: #fff 0px 0px 8px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        
-        #description {
-            position: absolute;
-            top: calc(50% + 35px);
-            left: 0;
-            width: 100%;
-            height: 50px;
-            color: #fff;
-            text-align: center;
-            line-height: 50px;
-            font-size: 20px;
-            text-shadow: #fff 0px 0px 10px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        
-        #name {
-            position: absolute;
-            top: calc(50% - 100px);
-            left: 0;
-            width: 100%;
-            height: 50px;
-            color: #fff;
-            text-align: center;
-            line-height: 50px;
-            font-size: 20px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        /* 
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>KR4AUW - WSHM613</title>
+	<style>
+		@font-face {
+			font-family: 'RedHatTextVF';
+			src: url('assets/RedHatTextVF.ttf') format('truetype');
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #000;
+			color: #fff;
+			height: 100vh;
+			width: 100vw;
+		}
+
+		#globeViz {
+			width: 100vw;
+			height: 100vh;
+		}
+
+		#header {
+			position: absolute;
+			top: calc(50% - 25px);
+			left: 0;
+			width: 100%;
+			height: 50px;
+			color: #fff;
+			text-align: center;
+			line-height: 50px;
+			font-size: 4em;
+			text-shadow: #fff 0px 0px 8px;
+			font-family: 'Courier New', Courier, monospace;
+		}
+
+		#description {
+			position: absolute;
+			top: calc(50% + 35px);
+			left: 0;
+			width: 100%;
+			height: 50px;
+			color: #fff;
+			text-align: center;
+			line-height: 50px;
+			font-size: 20px;
+			text-shadow: #fff 0px 0px 10px;
+			font-family: 'Courier New', Courier, monospace;
+		}
+
+		#name {
+			position: absolute;
+			top: calc(50% - 100px);
+			left: 0;
+			width: 100%;
+			height: 50px;
+			color: #fff;
+			text-align: center;
+			line-height: 50px;
+			font-size: 20px;
+			font-family: 'Courier New', Courier, monospace;
+		}
+
+		/* 
 		#equipment,
 		#equipment a {
 			position: absolute;
@@ -77,1826 +78,1885 @@
 			font-size: 1em;
 			text-decoration: dotted 1px;
 		} */
-        
-        a#scroll_past_globe {
-            position: absolute;
-            bottom: 10px;
-            /* center */
-            left: 50%;
-            transform: translateX(-50%);
-            color: #ffffff44;
-            font-size: 1em;
-            text-decoration: dotted 1px;
-            background-color: #00000000;
-            border: 1px solid #ffffff44;
-            border-radius: .3em;
-            padding: 5px;
-            cursor: pointer;
-            font-style: italic;
-        }
-        
-        h1 {
-            text-align: center;
-            font-size: 2em;
-            color: black;
-        }
-        
-        section {
-            padding: 20px;
-            margin: 0 auto;
-            background-color: #fff;
-            color: #000;
-            font-family: 'RedHatTextVF', sans-serif;
-        }
-        
-        .space_equally {
-            margin: 10px;
-            border: #000 1px solid;
-            padding: 5px;
-            border-radius: 5px;
-        }
-        
-        @media (max-width: 600px) {
-            .space_equally {
-                display: block;
-                margin: 10px auto;
-            }
-        }
-        
-        a {
-            color: #000;
-            text-decoration-style: dotted;
-        }
-        
-        a:hover {
-            color: #000;
-            text-decoration: underline;
-        }
-        
-        footer {
-            padding: 1em;
-            color: #ffffffbe;
-            text-align: center;
-            font-size: 1em;
-            text-decoration: dotted 1px;
-        }
-    </style>
 
-    <style>
-        #article_grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            grid-gap: 20px;
-            padding: 20px;
-        }
-        
-        .article-card {
-            background-color: #ffffff;
-            color: #000000;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px #00000055;
-        }
-        
-        #logbook {
-            padding: 20px;
-        }
-        
-        @media screen and (max-width: 600px) {
-            .article-card {
-                padding: 10px;
-            }
-            #article_grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-            #logbook {
-                padding: 10px;
-            }
-        }
-        
-        .italic {
-            font-style: italic;
-        }
-    </style>
-    <!-- Taken directly from https://www.w3schools.com/howto/howto_css_tooltip.asp -->
-    <style>
-        /* Tooltip container */
-        
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            border-bottom: 1px dotted black;
-            /* If you want dots under the hoverable text */
-        }
-        /* Tooltip text */
-        
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 120px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            padding: 5px 0;
-            border-radius: 6px;
-            /* Position the tooltip text */
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -60px;
-            /* Fade in tooltip */
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        /* Tooltip arrow */
-        
-        .tooltip .tooltiptext::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #555 transparent transparent transparent;
-        }
-        /* Show the tooltip text when you mouse over the tooltip container */
-        
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-    </style>
-    <style>
-        /* show five stars */
-        
-        .five-stars::before {
-            content: '★★★★★ ';
-            color: gold;
-            height: 1.2em;
-        }
-        
-        .four-stars::before {
-            content: '★★★★☆ ';
-            color: gold;
-            height: 1.2em;
-        }
-        
-        .three-stars::before {
-            content: '★★★☆☆ ';
-            color: gold;
-            height: 1.2em;
-        }
-        
-        .two-stars::before {
-            content: '★★☆☆☆ ';
-            color: gold;
-            height: 1.2em;
-        }
-        
-        .one-star::before {
-            content: '★☆☆☆☆ ';
-            color: gold;
-            height: 1.2em;
-        }
-    </style>
-    <style>
-        #drone_photos {
-            max-width: 900px;
-            width: min(100%, 900px);
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1rem;
-            align-items: center;
-        }
+		a#scroll_past_globe {
+			position: absolute;
+			bottom: 10px;
+			/* center */
+			left: 50%;
+			transform: translateX(-50%);
+			color: #ffffff44;
+			font-size: 1em;
+			text-decoration: dotted 1px;
+			background-color: #00000000;
+			border: 1px solid #ffffff44;
+			border-radius: .3em;
+			padding: 5px;
+			cursor: pointer;
+			font-style: italic;
+		}
 
-        #drone_photos img {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-    </style>
+		h1 {
+			text-align: center;
+			font-size: 2em;
+			color: black;
+		}
+
+		section {
+			padding: 20px;
+			margin: 0 auto;
+			background-color: #fff;
+			color: #000;
+			font-family: 'RedHatTextVF', sans-serif;
+		}
+
+		.space_equally {
+			margin: 10px;
+			border: #000 1px solid;
+			padding: 5px;
+			border-radius: 5px;
+		}
+
+		@media (max-width: 600px) {
+			.space_equally {
+				display: block;
+				margin: 10px auto;
+			}
+		}
+
+		a {
+			color: #000;
+			text-decoration-style: dotted;
+		}
+
+		a:hover {
+			color: #000;
+			text-decoration: underline;
+		}
+
+		footer {
+			padding: 1em;
+			color: #ffffffbe;
+			text-align: center;
+			font-size: 1em;
+			text-decoration: dotted 1px;
+		}
+	</style>
+
+	<style>
+		#article_grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+			grid-gap: 20px;
+			padding: 20px;
+		}
+
+		.article-card {
+			background-color: #ffffff;
+			color: #000000;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px #00000055;
+		}
+
+		#logbook {
+			padding: 20px;
+		}
+
+		@media screen and (max-width: 600px) {
+			.article-card {
+				padding: 10px;
+			}
+
+			#article_grid {
+				grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			}
+
+			#logbook {
+				padding: 10px;
+			}
+		}
+
+		.italic {
+			font-style: italic;
+		}
+	</style>
+	<!-- Taken directly from https://www.w3schools.com/howto/howto_css_tooltip.asp -->
+	<style>
+		/* Tooltip container */
+
+		.tooltip {
+			position: relative;
+			display: inline-block;
+			border-bottom: 1px dotted black;
+			/* If you want dots under the hoverable text */
+		}
+
+		/* Tooltip text */
+
+		.tooltip .tooltiptext {
+			visibility: hidden;
+			width: 120px;
+			background-color: #555;
+			color: #fff;
+			text-align: center;
+			padding: 5px 0;
+			border-radius: 6px;
+			/* Position the tooltip text */
+			position: absolute;
+			z-index: 1;
+			bottom: 125%;
+			left: 50%;
+			margin-left: -60px;
+			/* Fade in tooltip */
+			opacity: 0;
+			transition: opacity 0.3s;
+		}
+
+		/* Tooltip arrow */
+
+		.tooltip .tooltiptext::after {
+			content: "";
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			margin-left: -5px;
+			border-width: 5px;
+			border-style: solid;
+			border-color: #555 transparent transparent transparent;
+		}
+
+		/* Show the tooltip text when you mouse over the tooltip container */
+
+		.tooltip:hover .tooltiptext {
+			visibility: visible;
+			opacity: 1;
+		}
+	</style>
+	<style>
+		/* show five stars */
+
+		.five-stars::before {
+			content: '★★★★★ ';
+			color: gold;
+			height: 1.2em;
+		}
+
+		.four-stars::before {
+			content: '★★★★☆ ';
+			color: gold;
+			height: 1.2em;
+		}
+
+		.three-stars::before {
+			content: '★★★☆☆ ';
+			color: gold;
+			height: 1.2em;
+		}
+
+		.two-stars::before {
+			content: '★★☆☆☆ ';
+			color: gold;
+			height: 1.2em;
+		}
+
+		.one-star::before {
+			content: '★☆☆☆☆ ';
+			color: gold;
+			height: 1.2em;
+		}
+	</style>
+	<style>
+		#drone_photos {
+			max-width: 900px;
+			width: min(100%, 900px);
+			margin: 0 auto;
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+			gap: 1rem;
+			align-items: center;
+		}
+
+		#drone_photos img {
+			width: 100%;
+			max-width: 100%;
+			height: auto;
+			display: block;
+			border-radius: 5px;
+			box-sizing: border-box;
+		}
+	</style>
 </head>
 
 <body>
 
-    <div id="globeViz"></div>
+	<div id="globeViz"></div>
 
-    <div id="name">
-        Lucas Burlingham
-    </div>
-    <div id="header">
-        KR4AUW
-    </div>
-    <div id="description">
-        <i>EM69rd, General Class</i>
-    </div>
+	<div id="name">
+		Lucas Burlingham
+	</div>
+	<div id="header">
+		KR4AUW
+	</div>
+	<div id="description">
+		<i>EM69rd, General Class</i>
+	</div>
 
-    <a href="#content" id="scroll_past_globe">
+	<a href="#content" id="scroll_past_globe">
 		Scroll Past Globe
 	</a>
-    <section id="content">
-        <h1>
-            Hello! Lucas here.
-        </h1>
-        <center>
-            <!-- GUESS WHAT IT STILL WORKS SO I'M NOT GONNA FIX IT  -->
-            <a href="https://www.qrz.com/db/kr4auw" target="_blank" rel="noopener noreferrer" class="space_equally">QRZ
+	<section id="content">
+		<h1>
+			Hello! Lucas here.
+		</h1>
+		<center>
+			<!-- GUESS WHAT IT STILL WORKS SO I'M NOT GONNA FIX IT  -->
+			<a href="https://www.qrz.com/db/kr4auw" target="_blank" rel="noopener noreferrer" class="space_equally">QRZ
 				Profile</a>
-            <a href="https://lucasburlingham.me" target="_blank" rel="noopener noreferrer" class="space_equally">lucasburlingham.me</a>
-            <a href="https://pskreporter.info/pskmap.html?preset&callsign=KR4AUW" target="_blank" rel="noopener noreferrer" class="space_equally">PSK Reporter</a>
-        </center>
-        <p>
-            Welcome to one of my websites. My personal website can be found at <a href="https://lucasburlingham.me">lucasburlingham.me</a>, and hosts a wider range of articles, strings around my online thumb, and an assortment of other <a href="https://www.catb.org/jargon/html/G/Good-Thing.html"
-                target="_blank" rel="noopener noreferrer"><i>Good Things</i></a>.
-        </p>
-        <div>
-            <h3>Links:</h3>
-            <small><i>All services involving SDR access are hosted on the south-side of Bloomington, IN.</i></small>
-            <ul id="nav-link">
-                <li>
-                    <a href="https://radiosonde.kr4auw.us/" target="_blank" rel="noopener noreferrer">Radiosonde Auto-RX
+			<a href="https://lucasburlingham.me" target="_blank" rel="noopener noreferrer"
+				class="space_equally">lucasburlingham.me</a>
+			<a href="https://pskreporter.info/pskmap.html?preset&callsign=KR4AUW" target="_blank"
+				rel="noopener noreferrer" class="space_equally">PSK Reporter</a>
+		</center>
+		<p>
+			Welcome to one of my websites. My personal website can be found at <a
+				href="https://lucasburlingham.me">lucasburlingham.me</a>, and hosts a wider range of articles, strings
+			around my online thumb, and an assortment of other <a
+				href="https://www.catb.org/jargon/html/G/Good-Thing.html" target="_blank"
+				rel="noopener noreferrer"><i>Good Things</i></a>.
+		</p>
+		<div>
+			<h3>Links:</h3>
+			<small><i>All services involving SDR access are hosted on the south-side of Bloomington, IN.</i></small>
+			<ul id="nav-link">
+				<li>
+					<a href="https://radiosonde.kr4auw.us/" target="_blank" rel="noopener noreferrer">Radiosonde Auto-RX
 						1.8.2</a>
-                </li>
-                <li>
-                    <a href="https://openwebrx.kr4auw.us/" target="_blank" rel="noopener noreferrer">OpenWebRX+</a>
-                </li>
-                <!-- <li>
+				</li>
+				<li>
+					<a href="https://openwebrx.kr4auw.us/" target="_blank" rel="noopener noreferrer">OpenWebRX+</a>
+				</li>
+				<!-- <li>
 					<pre>tcp://rtl_tcp.openwebrx.kr4auw.us</pre> - Access to the OpenWebRX server via RTL_TCP.
 				</li>
 				<li>
 					<pre>tcp://kiss.openwebrx.kr4auw.us</pre> - Access to the OpenWebRX server via KISS, for use with
 					software like Direwolf and Soundmodem.
 				</li> -->
-            </ul>
-        </div>
-        <p>
-            You may have noticed that this website isn't <i>amazing</i>, besides the globe that greeted you. <i style="color: #00000055">(Yes, those are accurate depictions of the QSO's I've made.)</i>
-        </p>
-        <p>
-            <br> That's on purpose.
-            <br>
-            <br>
-        </p>
-        <p>
-            What good is a hobby (such as amateur radio) if you get frustrated with it and spend so much time distracted that you never really enjoy the <i>doing</i> of the actual hobby?
-        </p>
-        <p>That being said, it's a shame for a website to look like it was designed by a colorblind zebra who learned html4 and never turned back. <i style="color: #00000055">Baaaackkk in myyyy dayyyy we used these things
+			</ul>
+		</div>
+		<p>
+			You may have noticed that this website isn't <i>amazing</i>, besides the globe that greeted you. <i
+				style="color: #00000055">(Yes, those are accurate depictions of the QSO's I've made.)</i>
+		</p>
+		<p>
+			<br> That's on purpose.
+			<br>
+			<br>
+		</p>
+		<p>
+			What good is a hobby (such as amateur radio) if you get frustrated with it and spend so much time distracted
+			that you never really enjoy the <i>doing</i> of the actual hobby?
+		</p>
+		<p>That being said, it's a shame for a website to look like it was designed by a colorblind zebra who learned
+			html4 and never turned back. <i style="color: #00000055">Baaaackkk in myyyy dayyyy we used these things
 				called TYPE WRITERS!</i></p>
-        <p>
-            So here this site is. It's clean, simple, works decently well on a cell phone, and runs on a CDN so I don't have to worry about security. Plus, it's mostly accessible.
-        </p>
+		<p>
+			So here this site is. It's clean, simple, works decently well on a cell phone, and runs on a CDN so I don't
+			have to worry about security. Plus, it's mostly accessible. Please email me with specific concerns regarding
+			accessibility.
+		</p>
 
-        <h2>
-            How to Contact Me over the air.
-        </h2>
-        <p>I don't have a great antenna setup, so I don't generally monitor the HF bands. HOA's are actually the thing killing all my fun (guns, antennas, etc.)
-            <br> When the bands aren't too bad and my vertical is working, I'll be on 20m USB. Check PSK reporter to see if I'm on a digital mode. GMRS is also an option, though it'll be rare that I monitor it. My callsign is WSHM613.
-        </p>
-        <h2>
-            What about QSL Cards?
-        </h2>
-        <p>I received one from <a href="https://qrz.com/db/P4/KE4TT" target="_blank" rel="noopener noreferrer">P4/KE4TT</a> during his trip to Aruba! I need to make mine and get it in the mail back to him. <br> If you send me one with postage, I'll send
-            one back once I have the chance.
-        </p>
+		<h2>
+			How to Contact Me over the air.
+		</h2>
+		<p>I don't have a great antenna setup, so I don't generally monitor the HF bands. HOA's are actually the thing
+			killing all my fun (guns, antennas, etc.)
+			<br> When the bands aren't too bad and my vertical is working, I'll be on 20m USB. Check PSK reporter to see
+			if I'm on a digital mode. GMRS is also an option, though it'll be rare that I monitor it. My callsign is
+			WSHM613.
+		</p>
+		<h2>
+			What about QSL Cards?
+		</h2>
+		<p>I received one from <a href="https://qrz.com/db/P4/KE4TT" target="_blank"
+				rel="noopener noreferrer">P4/KE4TT</a> during his trip to Aruba! I need to make mine and get it in the
+			mail back to him. <br> If you send me one with postage, I'll send
+			one back once I have the chance.
+		</p>
 
-        <div id="qsl-carousel">
-            <img src="/assets/images/qsl-aruba.jpeg" alt="P4/KE4TT QSL Card" class="space_equally" style="width: 100%; max-width: 600px; border-radius: 5px; border: 1px solid #00000055;">
-        </div>
+		<div id="qsl-carousel">
+			<img src="/assets/images/qsl-aruba.jpeg" alt="P4/KE4TT QSL Card" class="space_equally"
+				style="width: 100%; max-width: 600px; border-radius: 5px; border: 1px solid #00000055;">
+		</div>
 
-        <div id="article_grid">
-            <div class="article-card">
-                <h3>What's the deal with the globe?</h3>
-                <p>It's cool, right? It's a globe that shows the contacts I've made so far. You can make yours at <a href="/globegenerator/index.html">/globegenerator</a> by uploading an ADIF file of your own.</p>
-                <p>
-                    Batteries not included, so use <kbd>CTRL+SHIFT+U</kbd> to see how I've setup the page.
-                </p>
-            </div>
-            <div class="article-card">
-                <h3>What do you use for power while portable?</h3>
-                <p>My favorite is a <a href="https://www.jackery.com/products/explorer-300-portable-power-station" target="_blank" rel="noopener noreferrer">Jackery Explorer 300</a>, which has been great. I did a two hour POTA session with the G90 while
-                    using a soldering iron and charged my phone. I only dropped about 9%. I also have and previously used 7 and 9Ah lead acid batteries. To charge them, I have a <a href="https://no.co/genius1">NOCO Genius 1.</a>
-                </p>
-                <p>
-                    Do yourself a favor and pick up (or make) a Anderson Powerpole to 12v DC barrel adapter. It makes life so much easier.
-                </p>
-            </div>
-            <div class="article-card">
-                <h3>
-                    How do <i>you</i> use the G90 with WSJT-X?
-                </h3>
-                <p>Simple. All you need is a DIN to 3.5mm cable and USB sound card. Find the cable on <a href="https://www.ebay.com/itm/176825533381" target="_blank" rel="noopener noreferrer">eBay</a>. Please note that this item ships from China, not Canada.
-                    It's approximately $18 and a week and a half of waiting.
-                </p>
-                <p>I've been recommended (and use) a <a href="https://amazon.com/dp/B00IRVQ0F8" target="_blank" rel="noopener noreferrer">Sabrent USB Sound Adapter</a>. I got it for about $7 while on sale, <a href="https://3cmls.co/US/B00IRVQ0F8" target="_blank"
-                        rel="noopener noreferrer">normally it will
+		<div id="article_grid">
+			<div class="article-card">
+				<h3>What's the deal with the globe?</h3>
+				<p>It's cool, right? It's a globe that shows the contacts I've made so far. You can make yours at <a
+						href="/globegenerator/index.html">/globegenerator</a> by uploading an ADIF file of your own.</p>
+				<p>
+					Batteries not included, so use <kbd>CTRL+SHIFT+U</kbd> to see how I've setup the page.
+				</p>
+			</div>
+			<div class="article-card">
+				<h3>What do you use for power while portable?</h3>
+				<p>My favorite is a <a href="https://www.jackery.com/products/explorer-300-portable-power-station"
+						target="_blank" rel="noopener noreferrer">Jackery Explorer 300</a>, which has been great. I did
+					a two hour POTA session with the G90 while
+					using a soldering iron and charged my phone. I only dropped about 9%. I also have and previously
+					used 7 and 9Ah lead acid batteries. To charge them, I have a <a href="https://no.co/genius1">NOCO
+						Genius 1.</a>
+				</p>
+				<p>
+					Do yourself a favor and pick up (or make) a Anderson Powerpole to 12v DC barrel adapter. It makes
+					life so much easier.
+				</p>
+			</div>
+			<div class="article-card">
+				<h3>
+					How do <i>you</i> use the G90 with WSJT-X?
+				</h3>
+				<p>Simple. All you need is a DIN to 3.5mm cable and USB sound card. Find the cable on <a
+						href="https://www.ebay.com/itm/176825533381" target="_blank" rel="noopener noreferrer">eBay</a>.
+					Please note that this item ships from China, not Canada.
+					It's approximately $18 and a week and a half of waiting.
+				</p>
+				<p>I've been recommended (and use) a <a href="https://amazon.com/dp/B00IRVQ0F8" target="_blank"
+						rel="noopener noreferrer">Sabrent USB Sound Adapter</a>. I got it for about $7 while on sale, <a
+						href="https://3cmls.co/US/B00IRVQ0F8" target="_blank" rel="noopener noreferrer">normally it will
 						be around $10.</a></p>
-            </div>
-            <div class="article-card">
-                <h3>POTA? SOTA?</h3>
-                <p><a href="https://pota.app/#/profile/KR4AUW" target="_blank" rel="noopener noreferrer">POTA, Yes.</a> POTA when I can. I no longer live 15 minutes away from US2723, my park of choice, but am currently tied for park leader in the # Activations
-                    (grand total: 2) at <a href="https://pota.app/#/park/US-5682">US-5682: Moores Creek State Recreation Area
+			</div>
+			<div class="article-card">
+				<h3>POTA? SOTA?</h3>
+				<p><a href="https://pota.app/#/profile/KR4AUW" target="_blank" rel="noopener noreferrer">POTA, Yes.</a>
+					POTA when I can. I no longer live 15 minutes away from US2723, my park of choice, but am currently
+					tied for park leader in the # Activations
+					(grand total: 2) at <a href="https://pota.app/#/park/US-5682">US-5682: Moores Creek State Recreation
+						Area
 						on Monroe Lake</a>.
-                </p>
-                <p>
-                    SOTA? Not yet. But hopefully someday. Neither the Sandhills of NC or plains of Indiana are particularly mountainous. There are some summits in Hawaii that I've been encouraged to go be the first to activate, and Europe sounds like a blast, so we'll see.
-                </p>
-            </div>
-            <div class="article-card">
-                <h3>Have you contested?</h3>
-                <p>I submitted a log for the FT8/FT4 showcase in the 2025 NC QSO Party, and was really excited to get the results... and be dead last (K4MN won). Other than that, I was there for K4MN's 2025 Winter Field Day showing, which was pretty cool.
-                    I've been able to get into a couple School Club Roundups but never submitted a log. I've participated in some military events, but those aren't amateur radio, so we'll leave those out.
-                </p>
-            </div>
-            <div class="article-card">
-                <h3>How can I get into contact with you?</h3>
-                <p>You may contact me by using a bit of Google-Fu. Look at a certian popular logbook bio...</p>
-            </div>
-        </div>
-        <hr>
-        <div id="equipment">
-            <h3>My Equipment List</h3>
-            <ul>
-                <li>
-                    <a class="three-stars" href="https://www.radioddity.com/products/radioddity-db25d" target="_blank" rel="noopener noreferrer">Radioddity DB25-D UHF/VHF DMR Analog 20w Mobile</a>
-                </li>
-                <li>
-                    <a class="four-stars" href="https://www.baofengradio.com/products/dm-1701" target="_blank" rel="noopener noreferrer">Baofeng DM-1701 UHF/VHF Handheld</a> (Thanks N0NV.)
-                </li>
-                <li>
-                    <a class="five-stars" href="https://www.hamradio.com/detail.cfm?pid=H0-016772" target="_blank" rel="noopener noreferrer">Xiegu G90 HF Transceiver .5-30Mhz SDR</a>
-                </li>
-                <li>
-                    <a class="four-stars" href="https://xiegu.eu/product/xpa125-100w-solid-state-linear-amplifier/" target="_blank" rel="noopener noreferrer">Xiegu XPA125B HF+6m 100-125W Linear Amplifier &
+				</p>
+				<p>
+					SOTA? Not yet. But hopefully someday. Neither the Sandhills of NC or plains of Indiana are
+					particularly mountainous. There are some summits in Hawaii that I've been encouraged to go be the
+					first to activate, and Europe sounds like a blast, so we'll see.
+				</p>
+			</div>
+			<div class="article-card">
+				<h3>Have you contested?</h3>
+				<p>I submitted a log for the FT8/FT4 showcase in the 2025 NC QSO Party, and was really excited to get
+					the results... and be dead last (K4MN won). Other than that, I was there for K4MN's 2025 Winter
+					Field Day showing, which was pretty cool.
+					I've been able to get into a couple School Club Roundups but never submitted a log. I've
+					participated in some military events, but those aren't amateur radio, so we'll leave those out.
+				</p>
+			</div>
+			<div class="article-card">
+				<h3>How can I get into contact with you?</h3>
+				<p>You may contact me by using a bit of Google-Fu. Look at a certian popular logbook bio...</p>
+			</div>
+		</div>
+		<hr>
+		<div id="equipment">
+			<h3>My Equipment List</h3>
+			<ul>
+				<li>
+					<a class="three-stars" href="https://www.radioddity.com/products/radioddity-db25d" target="_blank"
+						rel="noopener noreferrer">Radioddity DB25-D UHF/VHF DMR Analog 20w Mobile</a>
+				</li>
+				<li>
+					<a class="four-stars" href="https://www.baofengradio.com/products/dm-1701" target="_blank"
+						rel="noopener noreferrer">Baofeng DM-1701 UHF/VHF Handheld</a> (Thanks N0NV.)
+				</li>
+				<li>
+					<a class="five-stars" href="https://www.hamradio.com/detail.cfm?pid=H0-016772" target="_blank"
+						rel="noopener noreferrer">Xiegu G90 HF Transceiver .5-30Mhz SDR</a>
+				</li>
+				<li>
+					<a class="four-stars" href="https://xiegu.eu/product/xpa125-100w-solid-state-linear-amplifier/"
+						target="_blank" rel="noopener noreferrer">Xiegu XPA125B HF+6m 100-125W Linear Amplifier &
 						ATU</a> (Thanks N0NV.)
-                </li>
-                <li>
-                    <a class="five-stars" href="https://no.co/genius1" target="_blank" rel="noopener noreferrer">NOCO
+				</li>
+				<li>
+					<a class="five-stars" href="https://no.co/genius1" target="_blank" rel="noopener noreferrer">NOCO
 						Genius 1 Battery Charger</a>
-                </li>
-                <li>
-                    <a class="five-stars" href="https://www.ebay.com/itm/176825533381" target="_blank" rel="noopener noreferrer">Xiegu G90 DIN to 3.5mm Audio Cable</a>
-                </li>
-                <li>
-                    <a class="five-stars" href="https://amazon.com/dp/B00IRVQ0F8" target="_blank" rel="noopener noreferrer">Sabrent USB Sound Adapter</a>
-                </li>
-            </ul>
-        </div>
-        <div id="drone">
-            <p>
-                My latest project: An FPV-style freestyle drone with a built-in Meshtastic radio. At 390ft (400ft is the legal limit for recreational drones in the US), it has a range of about 25 miles in ideal conditions. I need to get better with the drone thing and
-                practice more, and figure out POSITION_HOLD and ALTITUDE_HOLD in Betaflight, but once I do, we'll be off to the races. GPS Rescue looks really cool when it works.
-            </p>
+				</li>
+				<li>
+					<a class="five-stars" href="https://www.ebay.com/itm/176825533381" target="_blank"
+						rel="noopener noreferrer">Xiegu G90 DIN to 3.5mm Audio Cable</a>
+				</li>
+				<li>
+					<a class="five-stars" href="https://amazon.com/dp/B00IRVQ0F8" target="_blank"
+						rel="noopener noreferrer">Sabrent USB Sound Adapter</a>
+				</li>
+			</ul>
+		</div>
+		<div id="drone">
+			<p>
+				My latest project: An FPV-style freestyle drone with a built-in Meshtastic radio. At 390ft (400ft is the
+				legal limit for recreational drones in the US), it has a range of about 25 miles in ideal conditions. I
+				need to get better with the drone thing and
+				practice more, and figure out POSITION_HOLD and ALTITUDE_HOLD in Betaflight, but once I do, we'll be off
+				to the races. GPS Rescue looks really cool when it works.
+			</p>
 
-            <div id="drone_photos">
-                <img src="/assets/images/fpv_built.jpg" alt="Photo of a 5 inch custom FPV drone with Meshtastic radio">
-                <img src="/assets/images/fpv_drone_case.jpg" style="transform: rotate(270deg);" alt="Gun case with FPV drone, controller, extra propellers, battery charger, and other accessories inside.">
-            </div>
+			<div id="drone_photos">
+				<img src="/assets/images/fpv_built.jpg" alt="Photo of a 5 inch custom FPV drone with Meshtastic radio">
+				<img src="/assets/images/fpv_drone_case.jpg" style="transform: rotate(270deg);"
+					alt="Gun case with FPV drone, controller, extra propellers, battery charger, and other accessories inside.">
+			</div>
 
-            <p>
-                It's not a perfect setup, and it lacks a camera (which saves battery but also makes it less fun - I'll eventually get one on there). It's using a <a href="https://www.seeedstudio.com/XIAO-nRF52840-Wio-SX1262-Kit-for-Meshtastic-p-6400.html"
-                    target="_blank" rel="noopener noreferrer">Seeed XIAO Wio nRF52840 with SX1262 LoRa radio</a> with a stock 2dBi antenna that comes with the Heltec V3's.
-            </p>
-        </div>
+			<p>
+				It's not a perfect setup, and it lacks a camera (which saves battery but also makes it less fun - I'll
+				eventually get one on there). It's using a <a
+					href="https://www.seeedstudio.com/XIAO-nRF52840-Wio-SX1262-Kit-for-Meshtastic-p-6400.html"
+					target="_blank" rel="noopener noreferrer">Seeed XIAO Wio nRF52840 with SX1262 LoRa radio</a> with a
+				stock 2dBi antenna that comes with the Heltec V3's.
+			</p>
+		</div>
 
-        <div id="g90-tracker">
-            <h3>I've scripted a scraper in Python to track the prices of the Xiegu G90 over time.</h3>
-            <p>The scraper collects price data from various websites and stores it in a SQLite database. It also generates a plot of the price trends over time, which can be viewed below:</p>
-            <img src="/G90_prices.png" alt="Line plot showing the prices of the Xiegu G90 over time." style="width: 100%; max-width: 600px; border-radius: 5px; border: 1px solid #00000055; height: fit-content;">
-            <h3>Text Summary</h3>
-            <pre id="g90_prices_summary" style="overflow-x: auto; background-color: #00000022; padding: 10px; border-radius: 5px; border: 1px solid #00000055;">
+		<div id="g90-tracker">
+			<h3>I've scripted a scraper in Python to track the prices of the Xiegu G90 over time.</h3>
+			<p>The scraper collects price data from various websites and stores it in a SQLite database. It also
+				generates a plot of the price trends over time, which can be viewed below:</p>
+			<img src="/G90_prices.png" alt="Line plot showing the prices of the Xiegu G90 over time."
+				style="width: 100%; max-width: 600px; border-radius: 5px; border: 1px solid #00000055; height: fit-content;">
+			<h3>Text Summary</h3>
+			<pre id="g90_prices_summary"
+				style="overflow-x: auto; background-color: #00000022; padding: 10px; border-radius: 5px; border: 1px solid #00000055;">
 			</pre>
-            <br>
-            <a href="https://github.com/lucasburlingham/kr4auw.us/blob/main/scrape.py">scrape.py on GitHub</a>. <a href="G90_prices.db">Download the database</a>. <a href="G90_prices.txt">Download the text summary</a>.
-        </div>
-        <hr>
-        <div id="logbook">
-            <iframe align="top" frameborder="0" height="500" scrolling="yes" src="https://logbook.qrz.com/lbstat/KR4AUW/" style="width: 100%;" tabindex="-1" width="640"></iframe>
-        </div>
-        <hr>
-        <div id="awards">
-            <h3>Some Awards</h3>
-            <img src="https://static.qrz.com/static/qrz/awards/ribbon.WorldRadioFriendship.png" alt="QRZ: World Radio Friendship" style="border: 3px solid #4f499d; border-radius: 1rem;" height="40">
-            <img src="https://static.qrz.com/static/qrz/awards/ribbon.QRZ30g3.svg" alt="QRZ: 30 Years of QRZ" style="border: 3px solid #7991aa; background-color: #7991aa; border-radius: 1rem; padding: 1px;" height="40">
-        </div>
-    </section>
-    <script src="//unpkg.com/globe.gl"></script>
+			<br>
+			<a href="https://github.com/lucasburlingham/kr4auw.us/blob/main/scrape.py">scrape.py on GitHub</a>. <a
+				href="G90_prices.db">Download the database</a>. <a href="G90_prices.txt">Download the text summary</a>.
+		</div>
+		<hr>
+		<div id="logbook">
+			<iframe align="top" frameborder="0" height="500" scrolling="yes"
+				src="https://logbook.qrz.com/lbstat/KR4AUW/" style="width: 100%;" tabindex="-1" width="640"></iframe>
+		</div>
+		<hr>
+		<div id="awards">
+			<h3>Some Awards</h3>
+			<img src="https://static.qrz.com/static/qrz/awards/ribbon.WorldRadioFriendship.png"
+				alt="QRZ: World Radio Friendship" style="border: 3px solid #4f499d; border-radius: 1rem;" height="40">
+			<img src="https://static.qrz.com/static/qrz/awards/ribbon.QRZ30g3.svg" alt="QRZ: 30 Years of QRZ"
+				style="border: 3px solid #7991aa; background-color: #7991aa; border-radius: 1rem; padding: 1px;"
+				height="40">
+		</div>
+	</section>
+	<script src="//unpkg.com/globe.gl"></script>
 
-    <!-- <script src="assets/js/gridstuff.js"></script> -->
-    <script>
-        // grids from qsos in array
-        // source_grids = ['FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05MF', 'FM05MF', 'FM05MF'];
+	<!-- <script src="assets/js/gridstuff.js"></script> -->
+	<script>
+		// grids from qsos in array
+		// source_grids = ['FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05MF', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05NC', 'FM05MF', 'FM05MF', 'FM05MF'];
 
-        // qso_grids = ["EM66", "EL95", "EN29", "EN29", "EM10", "FI06", "DM79", "FK68", "GF05", "GG66", "FK94", "DN71", "FF30", "DM68", "DM79", "GF15vd", "DM65", "DM79", "PN78", "DM33", "GG53", "QN03", "DM43", "DN55", "DM34rs", "DM79", "FJ09", "EK09", "DM43", "DM42", "DM79", "GN38", "FK58", "DM93", "FM04", "FK93", "JN11", "KP20", "FF46", "GG29", "DM26", "DM79", "FK87", "DM26", "QF56", "FK58", "FK58Bm", "DM43DF", "DM79ON", "DN44KP", "EM16XQ", "DM78", "DM42ng", "JN72", "FK42xo", "EM12HU", "EK57", "CM95rr", "CN85rp", "EN35jb",];
-
-
-        // qso_coords = [];
-        // source_coords = [];
-
-
-        // for (let i = 0; i < source_grids.length; i++) {
-        // 	// console.info("Source Grid " + source_grids[i]);
-        // 	source_coords.push(HamGridSquare.toLatLon(source_grids[i]));
-
-        // 	// console.log(source_coords[i]);
-        // }
+		// qso_grids = ["EM66", "EL95", "EN29", "EN29", "EM10", "FI06", "DM79", "FK68", "GF05", "GG66", "FK94", "DN71", "FF30", "DM68", "DM79", "GF15vd", "DM65", "DM79", "PN78", "DM33", "GG53", "QN03", "DM43", "DN55", "DM34rs", "DM79", "FJ09", "EK09", "DM43", "DM42", "DM79", "GN38", "FK58", "DM93", "FM04", "FK93", "JN11", "KP20", "FF46", "GG29", "DM26", "DM79", "FK87", "DM26", "QF56", "FK58", "FK58Bm", "DM43DF", "DM79ON", "DN44KP", "EM16XQ", "DM78", "DM42ng", "JN72", "FK42xo", "EM12HU", "EK57", "CM95rr", "CN85rp", "EN35jb",];
 
 
-        // for (let i = 0; i < qso_grids.length; i++) {
-        // 	// console.info("QSO Grid " + qso_grids[i]);
-        // 	qso_coords.push(HamGridSquare.toLatLon(qso_grids[i]));
-
-        // 	// console.log(qso_coords[i]);
-        // }
-
-        // console.log(source_coords.length);
+		// qso_coords = [];
+		// source_coords = [];
 
 
-        // IF THIS EVER DOESN'T WORK
-        // CHECK THE LENGTH OF THE ARRAYS. THEY SHOULD BE THE SAME
-        // MAKE SURE THE DUDE DOWN IN ST. BARTHALEMY ISN'T MISSING, HIS GRID IS FK87!
+		// for (let i = 0; i < source_grids.length; i++) {
+		// 	// console.info("Source Grid " + source_grids[i]);
+		// 	source_coords.push(HamGridSquare.toLatLon(source_grids[i]));
 
-        // arcs from source to qso
-        // const arcsData = source_coords.map((source, i) => ({
-        // 	startLat: source[0],
-        // 	startLng: source[1],
-        // 	endLat: qso_coords[i][0],
-        // 	endLng: qso_coords[i][1],
-        // 	color: ['red', 'white', 'orange', 'green'][Math.round(Math.random() * 3)]
-        // }));
+		// 	// console.log(source_coords[i]);
+		// }
 
-        // HEY STUPID, INSTEAD OF TRYING TO REWRITE THIS HOW ABOUT YOU SCROLL DOWN ON THE GLOBE OUTPUT PAGE, YEAH?
-        // YOU ALREADY DID THIS TWICE, JUST COPY THE ARRAY FROM THE PAGE SOURCE. DUMMY. (talking to myself at 10pm, don't mind me)
 
-        const arcsData = [{
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 36.5,
-            endLng: -87,
-            color: 'green'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 25.5,
-            endLng: -81,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 49.5,
-            endLng: -95,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 49.5,
-            endLng: -95,
-            color: 'green'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 30.5,
-            endLng: -97,
-            color: 'green'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: -3.5,
-            endLng: -79,
-            color: 'green'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 39.5,
-            endLng: -105,
-            color: 'green'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 18.5,
-            endLng: -67,
-            color: 'red'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: -34.5,
-            endLng: -59,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: -23.5,
-            endLng: -47,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 14.5,
-            endLng: -61,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 41.5,
-            endLng: -105,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: -39.5,
-            endLng: -73,
-            color: 'red'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 38.5,
-            endLng: -107,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 39.5,
-            endLng: -105,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: -34.854166666666664,
-            endLng: -56.208333333333336,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 35.5,
-            endLng: -107,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 39.5,
-            endLng: -105,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 48.5,
-            endLng: 135,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 39.5,
-            endLng: -119,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: -26.5,
-            endLng: -49,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 43.5,
-            endLng: 141,
-            color: 'green'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 33.5,
-            endLng: -111,
-            color: 'green'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 45.5,
-            endLng: -109,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 34.770833333333336,
-            endLng: -112.54166666666667,
-            color: 'red'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 39.5,
-            endLng: -105,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 9.5,
-            endLng: -79,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 19.5,
-            endLng: -99,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 33.5,
-            endLng: -111,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 32.5,
-            endLng: -111,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 39.5,
-            endLng: -105,
-            color: 'green'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 48.5,
-            endLng: -53,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 18.5,
-            endLng: -69,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 33.5,
-            endLng: -101,
-            color: 'red'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 34.5,
-            endLng: -79,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 13.5,
-            endLng: -61,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 41.5,
-            endLng: 3,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 60.5,
-            endLng: 25,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: -33.5,
-            endLng: -71,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: -20.5,
-            endLng: -55,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 36.5,
-            endLng: -115,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 39.5,
-            endLng: -105,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 17.5,
-            endLng: -63,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 36.5,
-            endLng: -115,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: -33.5,
-            endLng: 151,
-            color: 'red'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 18.5,
-            endLng: -69,
-            color: 'red'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 18.520833333333332,
-            endLng: -72.54166666666667,
-            color: 'red'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 31.895833333333332,
-            endLng: -114.375,
-            color: 'red'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 38.229166666666664,
-            endLng: -107.45833333333333,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 43.3125,
-            endLng: -113.79166666666667,
-            color: 'red'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 35.354166666666664,
-            endLng: -98.70833333333333,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 38.5,
-            endLng: -105,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 32.270833333333336,
-            endLng: -110.875,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 42.5,
-            endLng: 15,
-            color: 'red'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 12.604166666666666,
-            endLng: -70.04166666666667,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 31.520833333333332,
-            endLng: -100.04166666666667,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 17.5,
-            endLng: -89,
-            color: 'white'
-        }, {
-            startLat: 35.5,
-            startLng: -79,
-            endLat: 35.729166666666664,
-            endLng: -120.54166666666667,
-            color: 'white'
-        }, {
-            startLat: 35.5,
-            startLng: -79,
-            endLat: 45.645833333333336,
-            endLng: -122.54166666666667,
-            color: 'blue'
-        }, {
-            startLat: 35.5,
-            startLng: -79,
-            endLat: 45.0625,
-            endLng: -93.20833333333333,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 18.5,
-            endLng: -69,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 48.5,
-            endLng: 17,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: -5.5,
-            endLng: 13,
-            color: 'green'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 41.5,
-            endLng: 1,
-            color: 'red'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 39.9375,
-            endLng: -105.04166666666667,
-            color: 'red'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: -34.5,
-            endLng: -59,
-            color: 'green'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: -22.229166666666668,
-            endLng: 166.45833333333334,
-            color: 'white'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 35.5,
-            endLng: -137,
-            color: 'white'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 40.729166666666664,
-            endLng: -74.04166666666667,
-            color: 'red'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 40.9375,
-            endLng: -74.20833333333333,
-            color: 'green'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 45.5,
-            endLng: -75,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 41.5,
-            endLng: -85,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 40.5,
-            endLng: -83,
-            color: 'green'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 30.5,
-            endLng: -97,
-            color: 'blue'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 43.1875,
-            endLng: 8.708333333333334,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 34.5,
-            endLng: -87,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 44.5,
-            endLng: 11,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 40.395833333333336,
-            endLng: -3.7083333333333335,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 52.5,
-            endLng: 7,
-            color: 'red'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 45.645833333333336,
-            endLng: -93.04166666666667,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 36.5,
-            endLng: -97,
-            color: 'red'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 20.5,
-            endLng: -75,
-            color: 'white'
-        }, {
-            startLat: 37.6875,
-            startLng: -89.375,
-            endLat: 43.020833333333336,
-            endLng: -70.875,
-            color: 'red'
-        }, {
-            startLat: 37.6875,
-            startLng: -89.375,
-            endLat: 18.5,
-            endLng: -67,
-            color: 'blue'
-        }, {
-            startLat: 37.8125,
-            startLng: -89.20833333333333,
-            endLat: 40.770833333333336,
-            endLng: -74.29166666666667,
-            color: 'blue'
-        }, {
-            startLat: 33.6875,
-            startLng: -79.04166666666667,
-            endLat: 40.395833333333336,
-            endLng: -3.7083333333333335,
-            color: 'white'
-        }, {
-            startLat: 35.145833333333336,
-            startLng: -79.04166666666667,
-            endLat: 41.854166666666664,
-            endLng: -88.125,
-            color: 'blue'
-        }, {
-            startLat: 35.145833333333336,
-            startLng: -79.04166666666667,
-            endLat: 41.4375,
-            endLng: -82.04166666666667,
-            color: 'red'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.54166666666667,
-            endLat: 49.5,
-            endLng: -95,
-            color: 'blue'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 40.604166666666664,
-            endLng: -73.95833333333333,
-            color: 'green'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 42.895833333333336,
-            endLng: -71.375,
-            color: 'blue'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 43.6875,
-            endLng: -76.95833333333333,
-            color: 'white'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 40.895833333333336,
-            endLng: -81.20833333333333,
-            color: 'white'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 40.770833333333336,
-            endLng: -73.45833333333333,
-            color: 'green'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 33.395833333333336,
-            endLng: -87.95833333333333,
-            color: 'white'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 44.020833333333336,
-            endLng: -78.625,
-            color: 'green'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 39.854166666666664,
-            endLng: -78.04166666666667,
-            color: 'blue'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 35.270833333333336,
-            endLng: -82.45833333333333,
-            color: 'blue'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 43.395833333333336,
-            endLng: -72.375,
-            color: 'white'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 35.770833333333336,
-            endLng: -86.875,
-            color: 'white'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 27.854166666666668,
-            endLng: -82.70833333333333,
-            color: 'blue'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 43.395833333333336,
-            endLng: -83.625,
-            color: 'blue'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 40.6875,
-            endLng: -75.70833333333333,
-            color: 'red'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 33.229166666666664,
-            endLng: -87.54166666666667,
-            color: 'white'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 35.270833333333336,
-            endLng: -78.95833333333333,
-            color: 'white'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 42.229166666666664,
-            endLng: -78.125,
-            color: 'white'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 40.1875,
-            endLng: -85.625,
-            color: 'blue'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 32.6875,
-            endLng: -85.375,
-            color: 'red'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 38.8125,
-            endLng: -78.95833333333333,
-            color: 'white'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 28.104166666666668,
-            endLng: -80.625,
-            color: 'red'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 44.020833333333336,
-            endLng: -84.54166666666667,
-            color: 'blue'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 40.145833333333336,
-            endLng: -76.625,
-            color: 'red'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 39.854166666666664,
-            endLng: -90.54166666666667,
-            color: 'blue'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 26.604166666666668,
-            endLng: -81.875,
-            color: 'blue'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 39.979166666666664,
-            endLng: -94.29166666666667,
-            color: 'blue'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 27.770833333333332,
-            endLng: -82.70833333333333,
-            color: 'white'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 41.520833333333336,
-            endLng: -72.79166666666667,
-            color: 'white'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 43.1875,
-            endLng: -89.54166666666667,
-            color: 'red'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 33.5625,
-            endLng: -84.375,
-            color: 'white'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 38.395833333333336,
-            endLng: -82.29166666666667,
-            color: 'red'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 44.729166666666664,
-            endLng: -104.875,
-            color: 'white'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 55.479166666666664,
-            endLng: -116.29166666666667,
-            color: 'white'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 40.1875,
-            endLng: -74.95833333333333,
-            color: 'red'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 40.1875,
-            endLng: -75.04166666666667,
-            color: 'green'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 42.729166666666664,
-            endLng: -84.45833333333333,
-            color: 'white'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 28.104166666666668,
-            endLng: -80.625,
-            color: 'blue'
-        }, {
-            startLat: 35.5,
-            startLng: -79,
-            endLat: 17.229166666666668,
-            endLng: -88.875,
-            color: 'blue'
-        }, {
-            startLat: 35.5,
-            startLng: -79,
-            endLat: 28.895833333333332,
-            endLng: -92.45833333333333,
-            color: 'green'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 41.6875,
-            endLng: -71.875,
-            color: 'white'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 41.520833333333336,
-            endLng: -72.04166666666667,
-            color: 'green'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 33.8125,
-            endLng: -86.04166666666667,
-            color: 'blue'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 33.979166666666664,
-            endLng: -86.375,
-            color: 'red'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 41.895833333333336,
-            endLng: -71.125,
-            color: 'blue'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 42.604166666666664,
-            endLng: -83.125,
-            color: 'green'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 39.5,
-            endLng: -89,
-            color: 'blue'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 39.145833333333336,
-            endLng: -82.29166666666667,
-            color: 'white'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 37.5,
-            endLng: -89,
-            color: 'green'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 29.020833333333332,
-            endLng: -81.04166666666667,
-            color: 'blue'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 42.979166666666664,
-            endLng: -71.45833333333333,
-            color: 'blue'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 33.4375,
-            endLng: -84.54166666666667,
-            color: 'red'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 33.4375,
-            endLng: -91.04166666666667,
-            color: 'red'
-        }, {
-            startLat: 35.1875,
-            startLng: -78.875,
-            endLat: 40.395833333333336,
-            endLng: -74.20833333333333,
-            color: 'white'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 40.9375,
-            endLng: -73.95833333333333,
-            color: 'white'
-        }, {
-            startLat: 33.8125,
-            startLng: -81.625,
-            endLat: 40.5,
-            endLng: -75,
-            color: 'white'
-        }, {
-            startLat: 33.8125,
-            startLng: -81.625,
-            endLat: 40.5,
-            endLng: -73,
-            color: 'blue'
-        }, {
-            startLat: 33.8125,
-            startLng: -81.625,
-            endLat: 39.5,
-            endLng: -85,
-            color: 'blue'
-        }, {
-            startLat: 33.8125,
-            startLng: -81.625,
-            endLat: 38.5,
-            endLng: -87,
-            color: 'blue'
-        }, {
-            startLat: 33.8125,
-            startLng: -81.625,
-            endLat: 40.3125,
-            endLng: -75.875,
-            color: 'blue'
-        }, {
-            startLat: 33.8125,
-            startLng: -81.625,
-            endLat: 30.5,
-            endLng: -89,
-            color: 'green'
-        }, {
-            startLat: 33.8125,
-            startLng: -81.625,
-            endLat: 42.5,
-            endLng: -71,
-            color: 'blue'
-        }, {
-            startLat: 33.8125,
-            startLng: -81.625,
-            endLat: 40.5,
-            endLng: -75,
-            color: 'blue'
-        }, {
-            startLat: 33.8125,
-            startLng: -81.625,
-            endLat: 42.5,
-            endLng: -83,
-            color: 'blue'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 38.895833333333336,
-            endLng: -79.625,
-            color: 'blue'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 40.270833333333336,
-            endLng: -74.125,
-            color: 'blue'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 31.229166666666668,
-            endLng: -81.45833333333333,
-            color: 'green'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 34.9375,
-            endLng: -78.95833333333333,
-            color: 'white'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 30.4375,
-            endLng: -88.95833333333333,
-            color: 'white'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 40.020833333333336,
-            endLng: -83.04166666666667,
-            color: 'green'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 32.645833333333336,
-            endLng: -83.625,
-            color: 'white'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 41.5,
-            endLng: -75,
-            color: 'green'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 42.5,
-            endLng: -73,
-            color: 'blue'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 33.020833333333336,
-            endLng: -86.875,
-            color: 'white'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 40.145833333333336,
-            endLng: -93.125,
-            color: 'red'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 40.270833333333336,
-            endLng: -77.04166666666667,
-            color: 'green'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 31.229166666666668,
-            endLng: -81.45833333333333,
-            color: 'white'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 41.604166666666664,
-            endLng: -71.45833333333333,
-            color: 'red'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 40.270833333333336,
-            endLng: -74.125,
-            color: 'blue'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 16.8125,
-            endLng: -68.79166666666667,
-            color: 'white'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 41.3125,
-            endLng: -81.375,
-            color: 'blue'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 39.479166666666664,
-            endLng: -76.79166666666667,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 43.5,
-            endLng: -5,
-            color: 'red'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 40.5,
-            endLng: -73,
-            color: 'green'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 40.5,
-            endLng: -73,
-            color: 'green'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 33.5,
-            endLng: -95,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 26.5,
-            endLng: -81,
-            color: 'blue'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 39.5,
-            endLng: -87,
-            color: 'blue'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 28.5,
-            endLng: -17,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 40.520833333333336,
-            endLng: -96.54166666666667,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 18.5,
-            endLng: -67,
-            color: 'green'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 23.5,
-            endLng: -83,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 43.5,
-            endLng: -79,
-            color: 'blue'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 41.5,
-            endLng: -77,
-            color: 'blue'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 39.5,
-            endLng: -1,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 35.5,
-            endLng: -87,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 43.645833333333336,
-            endLng: 5.375,
-            color: 'green'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 48.3125,
-            endLng: -0.7083333333333333,
-            color: 'white'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 35.729166666666664,
-            endLng: -89.70833333333333,
-            color: 'white'
-        }, {
-            startLat: 37.8125,
-            startLng: -89.20833333333333,
-            endLat: 39.145833333333336,
-            endLng: -86.54166666666667,
-            color: 'blue'
-        }, {
-            startLat: 35.229166666666664,
-            startLng: -78.95833333333333,
-            endLat: 42.145833333333336,
-            endLng: -75.875,
-            color: 'white'
-        }, {
-            startLat: 35.229166666666664,
-            startLng: -78.95833333333333,
-            endLat: 38.979166666666664,
-            endLng: -84.29166666666667,
-            color: 'white'
-        }, {
-            startLat: 35.229166666666664,
-            startLng: -78.95833333333333,
-            endLat: 41.645833333333336,
-            endLng: -83.54166666666667,
-            color: 'blue'
-        }, {
-            startLat: 35.229166666666664,
-            startLng: -78.95833333333333,
-            endLat: 38.895833333333336,
-            endLng: -84.54166666666667,
-            color: 'red'
-        }, {
-            startLat: 35.229166666666664,
-            startLng: -78.95833333333333,
-            endLat: 31.1875,
-            endLng: -85.375,
-            color: 'blue'
-        }, {
-            startLat: 35.229166666666664,
-            startLng: -78.95833333333333,
-            endLat: 39.979166666666664,
-            endLng: -86.04166666666667,
-            color: 'green'
-        }, {
-            startLat: 35.229166666666664,
-            startLng: -78.95833333333333,
-            endLat: 32.4375,
-            endLng: -86.125,
-            color: 'white'
-        }, {
-            startLat: 35.229166666666664,
-            startLng: -78.95833333333333,
-            endLat: 41.270833333333336,
-            endLng: -81.79166666666667,
-            color: 'green'
-        }, {
-            startLat: 35.229166666666664,
-            startLng: -78.95833333333333,
-            endLat: 35.8125,
-            endLng: -86.625,
-            color: 'blue'
-        }, {
-            startLat: 35.229166666666664,
-            startLng: -78.95833333333333,
-            endLat: 33.270833333333336,
-            endLng: -86.79166666666667,
-            color: 'red'
-        }, {
-            startLat: 35.229166666666664,
-            startLng: -78.95833333333333,
-            endLat: 35.229166666666664,
-            endLng: -85.375,
-            color: 'blue'
-        }, {
-            startLat: 35.229166666666664,
-            startLng: -78.95833333333333,
-            endLat: 36.3125,
-            endLng: -86.625,
-            color: 'blue'
-        }, {
-            startLat: 35.229166666666664,
-            startLng: -78.95833333333333,
-            endLat: 42.4375,
-            endLng: -83.625,
-            color: 'red'
-        }, {
-            startLat: 35.229166666666664,
-            startLng: -78.95833333333333,
-            endLat: 35.020833333333336,
-            endLng: -78.95833333333333,
-            color: 'green'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 49.645833333333336,
-            endLng: 1.9583333333333333,
-            color: 'blue'
-        }, {
-            startLat: 33.895833333333336,
-            startLng: -81.625,
-            endLat: 44.979166666666664,
-            endLng: 8.041666666666666,
-            color: 'white'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 32.354166666666664,
-            endLng: -64.70833333333333,
-            color: 'white'
-        }, {
-            startLat: 35.104166666666664,
-            startLng: -78.875,
-            endLat: 40.1875,
-            endLng: -75.04166666666667,
-            color: 'blue'
-        }, {
-            startLat: 33.770833333333336,
-            startLng: -81.625,
-            endLat: -3.5,
-            endLng: -79,
-            color: 'white'
-        }, {
-            startLat: 39.145833333333336,
-            startLng: -86.54166666666667,
-            endLat: 46.104166666666664,
-            endLng: -89.875,
-            color: 'white'
-        }, {
-            startLat: 39.145833333333336,
-            startLng: -86.54166666666667,
-            endLat: 33.979166666666664,
-            endLng: -86.45833333333333,
-            color: 'blue'
-        }, {
-            startLat: 39.145833333333336,
-            startLng: -86.54166666666667,
-            endLat: 30.645833333333332,
-            endLng: -96.375,
-            color: 'white'
-        }, {
-            startLat: 39.145833333333336,
-            startLng: -86.54166666666667,
-            endLat: 42.979166666666664,
-            endLng: -78.625,
-            color: 'white'
-        }, {
-            startLat: 39.145833333333336,
-            startLng: -86.54166666666667,
-            endLat: 42.145833333333336,
-            endLng: -79.95833333333333,
-            color: 'green'
-        }, {
-            startLat: 39.145833333333336,
-            startLng: -86.54166666666667,
-            endLat: 43.645833333333336,
-            endLng: -95.54166666666667,
-            color: 'blue'
-        }, {
-            startLat: 37.8125,
-            startLng: -89.20833333333333,
-            endLat: 34.5,
-            endLng: -79,
-            color: 'white'
-        }, {
-            startLat: 39.145833333333336,
-            startLng: -86.54166666666667,
-            endLat: 28.854166666666668,
-            endLng: -80.875,
-            color: 'blue'
-        }, {
-            startLat: 39.145833333333336,
-            startLng: -86.54166666666667,
-            endLat: 39.104166666666664,
-            endLng: -95.04166666666667,
-            color: 'white'
-        }, {
-            startLat: 39.145833333333336,
-            startLng: -86.54166666666667,
-            endLat: 32.729166666666664,
-            endLng: -94.125,
-            color: 'blue'
-        }, {
-            startLat: 39.145833333333336,
-            startLng: -86.54166666666667,
-            endLat: 35.5,
-            endLng: -95,
-            color: 'white'
-        }, {
-            startLat: 37.8125,
-            startLng: -89.20833333333333,
-            endLat: 37.520833333333336,
-            endLng: -80.54166666666667,
-            color: 'red'
-        }, {
-            startLat: 37.8125,
-            startLng: -89.20833333333333,
-            endLat: 29.5,
-            endLng: -99,
-            color: 'blue'
-        }, {
-            startLat: 37.8125,
-            startLng: -89.20833333333333,
-            endLat: 35.5,
-            endLng: -121,
-            color: 'white'
-        }, {
-            startLat: 37.8125,
-            startLng: -89.20833333333333,
-            endLat: 28.5,
-            endLng: -81,
-            color: 'blue'
-        }, {
-            startLat: 37.8125,
-            startLng: -89.20833333333333,
-            endLat: 28.5,
-            endLng: -81,
-            color: 'white'
-        }];
+		// for (let i = 0; i < qso_grids.length; i++) {
+		// 	// console.info("QSO Grid " + qso_grids[i]);
+		// 	qso_coords.push(HamGridSquare.toLatLon(qso_grids[i]));
 
-        globe = new Globe(document.getElementById('globeViz'))
-            .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
-            .arcsData(arcsData)
-            .arcColor('color')
-            .showAtmosphere(true)
-            .arcDashLength(() => Math.random())
-            .arcDashGap(() => Math.random())
-            .arcDashAnimateTime(() => Math.random() * 4000 + 500)
-            .pointOfView({
-                lat: "35.5",
-                lng: "-78.5",
-                altitude: 2
-            });
-    </script>
-    <script>
-        // Get G90_prices.txt and put them into #g90_prices_summary
-        document.onloaded = fetch('G90_prices.txt')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('g90_prices_summary').innerText = data;
-            });
-    </script>
-    <footer>
-        <p>This site is always a work in progress and is &copy; 2026 Lucas Burlingham.</p>
-    </footer>
+		// 	// console.log(qso_coords[i]);
+		// }
+
+		// console.log(source_coords.length);
+
+
+		// IF THIS EVER DOESN'T WORK
+		// CHECK THE LENGTH OF THE ARRAYS. THEY SHOULD BE THE SAME
+		// MAKE SURE THE DUDE DOWN IN ST. BARTHALEMY ISN'T MISSING, HIS GRID IS FK87!
+
+		// arcs from source to qso
+		// const arcsData = source_coords.map((source, i) => ({
+		// 	startLat: source[0],
+		// 	startLng: source[1],
+		// 	endLat: qso_coords[i][0],
+		// 	endLng: qso_coords[i][1],
+		// 	color: ['red', 'white', 'orange', 'green'][Math.round(Math.random() * 3)]
+		// }));
+
+		// HEY STUPID, INSTEAD OF TRYING TO REWRITE THIS HOW ABOUT YOU SCROLL DOWN ON THE GLOBE OUTPUT PAGE, YEAH?
+		// YOU ALREADY DID THIS TWICE, JUST COPY THE ARRAY FROM THE PAGE SOURCE. DUMMY. (talking to myself at 10pm, don't mind me)
+
+		const arcsData = [{
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 36.5,
+			endLng: -87,
+			color: 'green'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 25.5,
+			endLng: -81,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 49.5,
+			endLng: -95,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 49.5,
+			endLng: -95,
+			color: 'green'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 30.5,
+			endLng: -97,
+			color: 'green'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -3.5,
+			endLng: -79,
+			color: 'green'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 39.5,
+			endLng: -105,
+			color: 'green'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 18.5,
+			endLng: -67,
+			color: 'red'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -34.5,
+			endLng: -59,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -23.5,
+			endLng: -47,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 14.5,
+			endLng: -61,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 41.5,
+			endLng: -105,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -39.5,
+			endLng: -73,
+			color: 'red'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 38.5,
+			endLng: -107,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 39.5,
+			endLng: -105,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -34.854166666666664,
+			endLng: -56.208333333333336,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 35.5,
+			endLng: -107,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 39.5,
+			endLng: -105,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 48.5,
+			endLng: 135,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 39.5,
+			endLng: -119,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -26.5,
+			endLng: -49,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 43.5,
+			endLng: 141,
+			color: 'green'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 33.5,
+			endLng: -111,
+			color: 'green'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 45.5,
+			endLng: -109,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 34.770833333333336,
+			endLng: -112.54166666666667,
+			color: 'red'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 39.5,
+			endLng: -105,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 9.5,
+			endLng: -79,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 19.5,
+			endLng: -99,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 33.5,
+			endLng: -111,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 32.5,
+			endLng: -111,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 39.5,
+			endLng: -105,
+			color: 'green'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 48.5,
+			endLng: -53,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 18.5,
+			endLng: -69,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 33.5,
+			endLng: -101,
+			color: 'red'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 34.5,
+			endLng: -79,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 13.5,
+			endLng: -61,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 41.5,
+			endLng: 3,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 60.5,
+			endLng: 25,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -33.5,
+			endLng: -71,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -20.5,
+			endLng: -55,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 36.5,
+			endLng: -115,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 39.5,
+			endLng: -105,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 17.5,
+			endLng: -63,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 36.5,
+			endLng: -115,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -33.5,
+			endLng: 151,
+			color: 'red'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 18.5,
+			endLng: -69,
+			color: 'red'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 18.520833333333332,
+			endLng: -72.54166666666667,
+			color: 'red'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 31.895833333333332,
+			endLng: -114.375,
+			color: 'red'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 38.229166666666664,
+			endLng: -107.45833333333333,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 43.3125,
+			endLng: -113.79166666666667,
+			color: 'red'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 35.354166666666664,
+			endLng: -98.70833333333333,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 38.5,
+			endLng: -105,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 32.270833333333336,
+			endLng: -110.875,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 42.5,
+			endLng: 15,
+			color: 'red'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 12.604166666666666,
+			endLng: -70.04166666666667,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 31.520833333333332,
+			endLng: -100.04166666666667,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 17.5,
+			endLng: -89,
+			color: 'white'
+		}, {
+			startLat: 35.5,
+			startLng: -79,
+			endLat: 35.729166666666664,
+			endLng: -120.54166666666667,
+			color: 'white'
+		}, {
+			startLat: 35.5,
+			startLng: -79,
+			endLat: 45.645833333333336,
+			endLng: -122.54166666666667,
+			color: 'blue'
+		}, {
+			startLat: 35.5,
+			startLng: -79,
+			endLat: 45.0625,
+			endLng: -93.20833333333333,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 18.5,
+			endLng: -69,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 48.5,
+			endLng: 17,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: -5.5,
+			endLng: 13,
+			color: 'green'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 41.5,
+			endLng: 1,
+			color: 'red'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 39.9375,
+			endLng: -105.04166666666667,
+			color: 'red'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: -34.5,
+			endLng: -59,
+			color: 'green'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: -22.229166666666668,
+			endLng: 166.45833333333334,
+			color: 'white'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 35.5,
+			endLng: -137,
+			color: 'white'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 40.729166666666664,
+			endLng: -74.04166666666667,
+			color: 'red'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 40.9375,
+			endLng: -74.20833333333333,
+			color: 'green'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 45.5,
+			endLng: -75,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 41.5,
+			endLng: -85,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 40.5,
+			endLng: -83,
+			color: 'green'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 30.5,
+			endLng: -97,
+			color: 'blue'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 43.1875,
+			endLng: 8.708333333333334,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 34.5,
+			endLng: -87,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 44.5,
+			endLng: 11,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 40.395833333333336,
+			endLng: -3.7083333333333335,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 52.5,
+			endLng: 7,
+			color: 'red'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 45.645833333333336,
+			endLng: -93.04166666666667,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 36.5,
+			endLng: -97,
+			color: 'red'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 20.5,
+			endLng: -75,
+			color: 'white'
+		}, {
+			startLat: 37.6875,
+			startLng: -89.375,
+			endLat: 43.020833333333336,
+			endLng: -70.875,
+			color: 'red'
+		}, {
+			startLat: 37.6875,
+			startLng: -89.375,
+			endLat: 18.5,
+			endLng: -67,
+			color: 'blue'
+		}, {
+			startLat: 37.8125,
+			startLng: -89.20833333333333,
+			endLat: 40.770833333333336,
+			endLng: -74.29166666666667,
+			color: 'blue'
+		}, {
+			startLat: 33.6875,
+			startLng: -79.04166666666667,
+			endLat: 40.395833333333336,
+			endLng: -3.7083333333333335,
+			color: 'white'
+		}, {
+			startLat: 35.145833333333336,
+			startLng: -79.04166666666667,
+			endLat: 41.854166666666664,
+			endLng: -88.125,
+			color: 'blue'
+		}, {
+			startLat: 35.145833333333336,
+			startLng: -79.04166666666667,
+			endLat: 41.4375,
+			endLng: -82.04166666666667,
+			color: 'red'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.54166666666667,
+			endLat: 49.5,
+			endLng: -95,
+			color: 'blue'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 40.604166666666664,
+			endLng: -73.95833333333333,
+			color: 'green'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 42.895833333333336,
+			endLng: -71.375,
+			color: 'blue'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 43.6875,
+			endLng: -76.95833333333333,
+			color: 'white'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 40.895833333333336,
+			endLng: -81.20833333333333,
+			color: 'white'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 40.770833333333336,
+			endLng: -73.45833333333333,
+			color: 'green'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 33.395833333333336,
+			endLng: -87.95833333333333,
+			color: 'white'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 44.020833333333336,
+			endLng: -78.625,
+			color: 'green'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 39.854166666666664,
+			endLng: -78.04166666666667,
+			color: 'blue'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 35.270833333333336,
+			endLng: -82.45833333333333,
+			color: 'blue'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 43.395833333333336,
+			endLng: -72.375,
+			color: 'white'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 35.770833333333336,
+			endLng: -86.875,
+			color: 'white'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 27.854166666666668,
+			endLng: -82.70833333333333,
+			color: 'blue'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 43.395833333333336,
+			endLng: -83.625,
+			color: 'blue'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 40.6875,
+			endLng: -75.70833333333333,
+			color: 'red'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 33.229166666666664,
+			endLng: -87.54166666666667,
+			color: 'white'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 35.270833333333336,
+			endLng: -78.95833333333333,
+			color: 'white'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 42.229166666666664,
+			endLng: -78.125,
+			color: 'white'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 40.1875,
+			endLng: -85.625,
+			color: 'blue'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 32.6875,
+			endLng: -85.375,
+			color: 'red'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 38.8125,
+			endLng: -78.95833333333333,
+			color: 'white'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 28.104166666666668,
+			endLng: -80.625,
+			color: 'red'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 44.020833333333336,
+			endLng: -84.54166666666667,
+			color: 'blue'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 40.145833333333336,
+			endLng: -76.625,
+			color: 'red'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 39.854166666666664,
+			endLng: -90.54166666666667,
+			color: 'blue'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 26.604166666666668,
+			endLng: -81.875,
+			color: 'blue'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 39.979166666666664,
+			endLng: -94.29166666666667,
+			color: 'blue'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 27.770833333333332,
+			endLng: -82.70833333333333,
+			color: 'white'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 41.520833333333336,
+			endLng: -72.79166666666667,
+			color: 'white'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 43.1875,
+			endLng: -89.54166666666667,
+			color: 'red'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 33.5625,
+			endLng: -84.375,
+			color: 'white'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 38.395833333333336,
+			endLng: -82.29166666666667,
+			color: 'red'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 44.729166666666664,
+			endLng: -104.875,
+			color: 'white'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 55.479166666666664,
+			endLng: -116.29166666666667,
+			color: 'white'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 40.1875,
+			endLng: -74.95833333333333,
+			color: 'red'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 40.1875,
+			endLng: -75.04166666666667,
+			color: 'green'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 42.729166666666664,
+			endLng: -84.45833333333333,
+			color: 'white'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 28.104166666666668,
+			endLng: -80.625,
+			color: 'blue'
+		}, {
+			startLat: 35.5,
+			startLng: -79,
+			endLat: 17.229166666666668,
+			endLng: -88.875,
+			color: 'blue'
+		}, {
+			startLat: 35.5,
+			startLng: -79,
+			endLat: 28.895833333333332,
+			endLng: -92.45833333333333,
+			color: 'green'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 41.6875,
+			endLng: -71.875,
+			color: 'white'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 41.520833333333336,
+			endLng: -72.04166666666667,
+			color: 'green'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 33.8125,
+			endLng: -86.04166666666667,
+			color: 'blue'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 33.979166666666664,
+			endLng: -86.375,
+			color: 'red'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 41.895833333333336,
+			endLng: -71.125,
+			color: 'blue'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 42.604166666666664,
+			endLng: -83.125,
+			color: 'green'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 39.5,
+			endLng: -89,
+			color: 'blue'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 39.145833333333336,
+			endLng: -82.29166666666667,
+			color: 'white'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 37.5,
+			endLng: -89,
+			color: 'green'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 29.020833333333332,
+			endLng: -81.04166666666667,
+			color: 'blue'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 42.979166666666664,
+			endLng: -71.45833333333333,
+			color: 'blue'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 33.4375,
+			endLng: -84.54166666666667,
+			color: 'red'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 33.4375,
+			endLng: -91.04166666666667,
+			color: 'red'
+		}, {
+			startLat: 35.1875,
+			startLng: -78.875,
+			endLat: 40.395833333333336,
+			endLng: -74.20833333333333,
+			color: 'white'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 40.9375,
+			endLng: -73.95833333333333,
+			color: 'white'
+		}, {
+			startLat: 33.8125,
+			startLng: -81.625,
+			endLat: 40.5,
+			endLng: -75,
+			color: 'white'
+		}, {
+			startLat: 33.8125,
+			startLng: -81.625,
+			endLat: 40.5,
+			endLng: -73,
+			color: 'blue'
+		}, {
+			startLat: 33.8125,
+			startLng: -81.625,
+			endLat: 39.5,
+			endLng: -85,
+			color: 'blue'
+		}, {
+			startLat: 33.8125,
+			startLng: -81.625,
+			endLat: 38.5,
+			endLng: -87,
+			color: 'blue'
+		}, {
+			startLat: 33.8125,
+			startLng: -81.625,
+			endLat: 40.3125,
+			endLng: -75.875,
+			color: 'blue'
+		}, {
+			startLat: 33.8125,
+			startLng: -81.625,
+			endLat: 30.5,
+			endLng: -89,
+			color: 'green'
+		}, {
+			startLat: 33.8125,
+			startLng: -81.625,
+			endLat: 42.5,
+			endLng: -71,
+			color: 'blue'
+		}, {
+			startLat: 33.8125,
+			startLng: -81.625,
+			endLat: 40.5,
+			endLng: -75,
+			color: 'blue'
+		}, {
+			startLat: 33.8125,
+			startLng: -81.625,
+			endLat: 42.5,
+			endLng: -83,
+			color: 'blue'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 38.895833333333336,
+			endLng: -79.625,
+			color: 'blue'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 40.270833333333336,
+			endLng: -74.125,
+			color: 'blue'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 31.229166666666668,
+			endLng: -81.45833333333333,
+			color: 'green'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 34.9375,
+			endLng: -78.95833333333333,
+			color: 'white'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 30.4375,
+			endLng: -88.95833333333333,
+			color: 'white'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 40.020833333333336,
+			endLng: -83.04166666666667,
+			color: 'green'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 32.645833333333336,
+			endLng: -83.625,
+			color: 'white'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 41.5,
+			endLng: -75,
+			color: 'green'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 42.5,
+			endLng: -73,
+			color: 'blue'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 33.020833333333336,
+			endLng: -86.875,
+			color: 'white'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 40.145833333333336,
+			endLng: -93.125,
+			color: 'red'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 40.270833333333336,
+			endLng: -77.04166666666667,
+			color: 'green'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 31.229166666666668,
+			endLng: -81.45833333333333,
+			color: 'white'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 41.604166666666664,
+			endLng: -71.45833333333333,
+			color: 'red'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 40.270833333333336,
+			endLng: -74.125,
+			color: 'blue'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 16.8125,
+			endLng: -68.79166666666667,
+			color: 'white'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 41.3125,
+			endLng: -81.375,
+			color: 'blue'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 39.479166666666664,
+			endLng: -76.79166666666667,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 43.5,
+			endLng: -5,
+			color: 'red'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 40.5,
+			endLng: -73,
+			color: 'green'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 40.5,
+			endLng: -73,
+			color: 'green'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 33.5,
+			endLng: -95,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 26.5,
+			endLng: -81,
+			color: 'blue'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 39.5,
+			endLng: -87,
+			color: 'blue'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 28.5,
+			endLng: -17,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 40.520833333333336,
+			endLng: -96.54166666666667,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 18.5,
+			endLng: -67,
+			color: 'green'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 23.5,
+			endLng: -83,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 43.5,
+			endLng: -79,
+			color: 'blue'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 41.5,
+			endLng: -77,
+			color: 'blue'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 39.5,
+			endLng: -1,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 35.5,
+			endLng: -87,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 43.645833333333336,
+			endLng: 5.375,
+			color: 'green'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 48.3125,
+			endLng: -0.7083333333333333,
+			color: 'white'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 35.729166666666664,
+			endLng: -89.70833333333333,
+			color: 'white'
+		}, {
+			startLat: 37.8125,
+			startLng: -89.20833333333333,
+			endLat: 39.145833333333336,
+			endLng: -86.54166666666667,
+			color: 'blue'
+		}, {
+			startLat: 35.229166666666664,
+			startLng: -78.95833333333333,
+			endLat: 42.145833333333336,
+			endLng: -75.875,
+			color: 'white'
+		}, {
+			startLat: 35.229166666666664,
+			startLng: -78.95833333333333,
+			endLat: 38.979166666666664,
+			endLng: -84.29166666666667,
+			color: 'white'
+		}, {
+			startLat: 35.229166666666664,
+			startLng: -78.95833333333333,
+			endLat: 41.645833333333336,
+			endLng: -83.54166666666667,
+			color: 'blue'
+		}, {
+			startLat: 35.229166666666664,
+			startLng: -78.95833333333333,
+			endLat: 38.895833333333336,
+			endLng: -84.54166666666667,
+			color: 'red'
+		}, {
+			startLat: 35.229166666666664,
+			startLng: -78.95833333333333,
+			endLat: 31.1875,
+			endLng: -85.375,
+			color: 'blue'
+		}, {
+			startLat: 35.229166666666664,
+			startLng: -78.95833333333333,
+			endLat: 39.979166666666664,
+			endLng: -86.04166666666667,
+			color: 'green'
+		}, {
+			startLat: 35.229166666666664,
+			startLng: -78.95833333333333,
+			endLat: 32.4375,
+			endLng: -86.125,
+			color: 'white'
+		}, {
+			startLat: 35.229166666666664,
+			startLng: -78.95833333333333,
+			endLat: 41.270833333333336,
+			endLng: -81.79166666666667,
+			color: 'green'
+		}, {
+			startLat: 35.229166666666664,
+			startLng: -78.95833333333333,
+			endLat: 35.8125,
+			endLng: -86.625,
+			color: 'blue'
+		}, {
+			startLat: 35.229166666666664,
+			startLng: -78.95833333333333,
+			endLat: 33.270833333333336,
+			endLng: -86.79166666666667,
+			color: 'red'
+		}, {
+			startLat: 35.229166666666664,
+			startLng: -78.95833333333333,
+			endLat: 35.229166666666664,
+			endLng: -85.375,
+			color: 'blue'
+		}, {
+			startLat: 35.229166666666664,
+			startLng: -78.95833333333333,
+			endLat: 36.3125,
+			endLng: -86.625,
+			color: 'blue'
+		}, {
+			startLat: 35.229166666666664,
+			startLng: -78.95833333333333,
+			endLat: 42.4375,
+			endLng: -83.625,
+			color: 'red'
+		}, {
+			startLat: 35.229166666666664,
+			startLng: -78.95833333333333,
+			endLat: 35.020833333333336,
+			endLng: -78.95833333333333,
+			color: 'green'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 49.645833333333336,
+			endLng: 1.9583333333333333,
+			color: 'blue'
+		}, {
+			startLat: 33.895833333333336,
+			startLng: -81.625,
+			endLat: 44.979166666666664,
+			endLng: 8.041666666666666,
+			color: 'white'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 32.354166666666664,
+			endLng: -64.70833333333333,
+			color: 'white'
+		}, {
+			startLat: 35.104166666666664,
+			startLng: -78.875,
+			endLat: 40.1875,
+			endLng: -75.04166666666667,
+			color: 'blue'
+		}, {
+			startLat: 33.770833333333336,
+			startLng: -81.625,
+			endLat: -3.5,
+			endLng: -79,
+			color: 'white'
+		}, {
+			startLat: 39.145833333333336,
+			startLng: -86.54166666666667,
+			endLat: 46.104166666666664,
+			endLng: -89.875,
+			color: 'white'
+		}, {
+			startLat: 39.145833333333336,
+			startLng: -86.54166666666667,
+			endLat: 33.979166666666664,
+			endLng: -86.45833333333333,
+			color: 'blue'
+		}, {
+			startLat: 39.145833333333336,
+			startLng: -86.54166666666667,
+			endLat: 30.645833333333332,
+			endLng: -96.375,
+			color: 'white'
+		}, {
+			startLat: 39.145833333333336,
+			startLng: -86.54166666666667,
+			endLat: 42.979166666666664,
+			endLng: -78.625,
+			color: 'white'
+		}, {
+			startLat: 39.145833333333336,
+			startLng: -86.54166666666667,
+			endLat: 42.145833333333336,
+			endLng: -79.95833333333333,
+			color: 'green'
+		}, {
+			startLat: 39.145833333333336,
+			startLng: -86.54166666666667,
+			endLat: 43.645833333333336,
+			endLng: -95.54166666666667,
+			color: 'blue'
+		}, {
+			startLat: 37.8125,
+			startLng: -89.20833333333333,
+			endLat: 34.5,
+			endLng: -79,
+			color: 'white'
+		}, {
+			startLat: 39.145833333333336,
+			startLng: -86.54166666666667,
+			endLat: 28.854166666666668,
+			endLng: -80.875,
+			color: 'blue'
+		}, {
+			startLat: 39.145833333333336,
+			startLng: -86.54166666666667,
+			endLat: 39.104166666666664,
+			endLng: -95.04166666666667,
+			color: 'white'
+		}, {
+			startLat: 39.145833333333336,
+			startLng: -86.54166666666667,
+			endLat: 32.729166666666664,
+			endLng: -94.125,
+			color: 'blue'
+		}, {
+			startLat: 39.145833333333336,
+			startLng: -86.54166666666667,
+			endLat: 35.5,
+			endLng: -95,
+			color: 'white'
+		}, {
+			startLat: 37.8125,
+			startLng: -89.20833333333333,
+			endLat: 37.520833333333336,
+			endLng: -80.54166666666667,
+			color: 'red'
+		}, {
+			startLat: 37.8125,
+			startLng: -89.20833333333333,
+			endLat: 29.5,
+			endLng: -99,
+			color: 'blue'
+		}, {
+			startLat: 37.8125,
+			startLng: -89.20833333333333,
+			endLat: 35.5,
+			endLng: -121,
+			color: 'white'
+		}, {
+			startLat: 37.8125,
+			startLng: -89.20833333333333,
+			endLat: 28.5,
+			endLng: -81,
+			color: 'blue'
+		}, {
+			startLat: 37.8125,
+			startLng: -89.20833333333333,
+			endLat: 28.5,
+			endLng: -81,
+			color: 'white'
+		}];
+
+		globe = new Globe(document.getElementById('globeViz'))
+			.globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+			.arcsData(arcsData)
+			.arcColor('color')
+			.showAtmosphere(true)
+			.arcDashLength(() => Math.random())
+			.arcDashGap(() => Math.random())
+			.arcDashAnimateTime(() => Math.random() * 4000 + 500)
+			.pointOfView({
+				lat: "35.5",
+				lng: "-78.5",
+				altitude: 2
+			});
+	</script>
+	<script>
+		// Get G90_prices.txt and put them into #g90_prices_summary
+		document.onloaded = fetch('G90_prices.txt')
+			.then(response => response.text())
+			.then(data => {
+				document.getElementById('g90_prices_summary').innerText = data;
+			});
+	</script>
+	<footer>
+		<p>This site is always a work in progress and is &copy; 2026 Lucas Burlingham.</p>
+	</footer>
 </body>
 
 </html>
