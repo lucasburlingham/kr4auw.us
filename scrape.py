@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 urls = ['https://www.hamradio.com/detail.cfm?pid=H0-016772', 
         'https://www.radioddity.com/products/xiegu-g90-hf-transceiver',
         'https://www.amazon.com/dp/B08X6Z6KN2', 
-        "https://www2.randl.com/index.php?main_page=product_info&products_id=75815"]
+        'https://www.randl.com/index.php?main_page=product_info&products_id=75815']
 hostname = None
 
 prices = []
