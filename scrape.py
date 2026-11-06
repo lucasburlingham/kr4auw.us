@@ -36,9 +36,13 @@ for url in urls:
         # Use both price-item and money to get the price
         # Get parent element .price-item
 		parent = soup.find('span', class_='price-item')
-		# Get the child element money of parent
-		price = parent.find('span', class_='money').text
-		if price is None:
+		if parent:
+			money_span = parent.find('span', class_='money')
+			if money_span:
+				price = money_span.text
+			else:
+				price = 'Not available'
+		else:
 			price = 'Not available'
 
 	elif 'amazon' in url:
@@ -54,7 +58,7 @@ for url in urls:
         # <span id="taxInclusiveMessage" class="a-size-mini a-color-base aok-align-center aok-nowrap"></span>
         # </div></div></div>
 
-		price=corePrice_feature_div = soup.find('div', id='corePrice_feature_div')
+		corePrice_feature_div = soup.find('div', id='corePrice_feature_div')
 		parent = soup.find_all('span', class_='a-offscreen')
 		if parent:
 			price = parent[0].text
@@ -64,12 +68,25 @@ for url in urls:
 	elif 'hamradio' in url:
 		parent = soup.find('p', class_='addtoCart')
 		# Get the child strong element and get the inner text
-		price = parent.find('strong').text
+		if parent:
+			strong = parent.find('strong')
+			if strong:
+				price = strong.text
+			else:
+				price = 'Not available'
+		else:
+			price = 'Not available'
   
 	elif 'randl' in url:
 		parent = soup.find('h2', id='productPrices')
 		if parent:
-			price = parent.find('span', class_='productBasePrice').text.strip()
+			span = parent.find('span', class_='productBasePrice')
+			if span:
+				price = span.text.strip()
+			else:
+				price = 'Not available'
+		else:
+			price = 'Not available'
 
 
 	prices.append(price)
@@ -77,17 +94,30 @@ for url in urls:
 	
  
  
-average_price = str(sum([float(price.replace('$', '')) for price in prices]) / len(prices))
-# round to 2 decimal places
-average_price = "{:.2f}".format(float(average_price))
+# Filter out 'Not available' prices for calculations
+valid_prices = [float(price.replace('$', '')) for price in prices if price != 'Not available']
 
+if valid_prices:
+	average_price = str(sum(valid_prices) / len(valid_prices))
+	# round to 2 decimal places
+	average_price = "{:.2f}".format(float(average_price))
+else:
+	average_price = 'N/A'
 
 print("The prices of the Xiegu G90 are:")
 print(prices)
 print("On today, " + datetime.today().strftime('%Y-%m-%d') + ":")
 print("The average price is $" + average_price)
-lowest_price = min([float(price.replace('$', '')) for price in prices])
-print("The lowest price is $" + "{:.2f}".format(lowest_price) + " at " + urls[prices.index("${:.2f}".format(lowest_price))] + ", which is $" + ("{:.2f}".format(abs(lowest_price - float(average_price)))) + " less than the average price.")
+
+if valid_prices:
+	lowest_price = min(valid_prices)
+	lowest_price_str = "${:.2f}".format(lowest_price)
+	# Find the index of the price in the original list
+	for i, price in enumerate(prices):
+		if price == lowest_price_str:
+			lowest_price_index = i
+			break
+	print("The lowest price is $" + "{:.2f}".format(lowest_price) + " at " + urls[lowest_price_index] + ", which is $" + ("{:.2f}".format(abs(lowest_price - float(average_price)))) + " less than the average price.")
 
 
 # Generate a graphic with the prices over time
@@ -99,8 +129,10 @@ rows = c.fetchall()
 dates = []
 prices = []
 for row in rows:
-	dates.append(row[0])
-	prices.append(float(row[1]))
+	# Skip 'Not available' prices
+	if row[1] != 'Not available':
+		dates.append(row[0])
+		prices.append(float(row[1]))
 conn.close()
 
 # average the prices for the same date
@@ -113,11 +145,14 @@ for date, price in zip(dates, prices):
 dates = sorted(date_price_dict.keys())
 prices = [sum(date_price_dict[date]) / len(date_price_dict[date]) for date in dates]
 
-# Convert dates to datetime objects
-dates = [datetime.strptime(date, '%Y-%m-%d') for date in dates]
-# Plot the prices
-plt.plot(dates, prices)
-plt.xlabel('Date')
+# Convert dates to datetime objects for plotting
+import matplotlib.dates as mdates
+dates_dt = [datetime.strptime(date, '%Y-%m-%d') for date in dates]
+# Plot the prices using matplotlib date converter
+plt.figure(figsize=(10, 6))
+plt.plot(mdates.date2num(dates_dt), prices)
+plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+plt.gca().xaxis.set_major_locator(mdates.AutoDateLocator())
 plt.ylabel('Price')
 plt.title('Prices of Xiegu G90 over time')
 plt.xticks(rotation=45)
