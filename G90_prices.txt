@@ -1,5 +1,5 @@
 The prices of the Xiegu G90 are:
-['Not available', 'Not available', 'Not available', '$445.00']
-On today, 2026-11-06:
-The average price is $445.00
-The lowest price is $445.00 at https://www.randl.com/index.php?main_page=product_info&products_id=75815, which is $0.00 less than the average price.
+['Not available', '$499.00', 'Not available', '$445.00']
+On today, 2026-11-09:
+The average price is $472.00
+The lowest price is $445.00 at https://www.randl.com/index.php?main_page=product_info&products_id=75815, which is $27.00 less than the average price.
