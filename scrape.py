@@ -4,19 +4,22 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from urllib.parse import urlparse
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 
-urls = ['https://www.hamradio.com/detail.cfm?pid=H0-016772', 
-        'https://www.radioddity.com/products/xiegu-g90-hf-transceiver',
-        'https://www.amazon.com/dp/B08X6Z6KN2', 
-        'https://www.randl.com/index.php?main_page=product_info&products_id=75815']
-hostname = None
+URLS = [
+    'https://www.hamradio.com/detail.cfm?pid=H0-016772',
+    'https://www.radioddity.com/products/xiegu-g90-hf-transceiver',
+    'https://www.amazon.com/dp/B08X6Z6KN2',
+    'https://www.randl.com/index.php?main_page=product_info&products_id=75815'
+]
 
-prices = []
-price = None
+DB_FILE = 'G90_prices.db'
+IMAGE_FILE = 'G90_prices.png'
 
 
-def addToDatabase(price, url):
-	conn = sqlite3.connect('G90_prices.db')
+def add_to_database(price, url):
+	"""Save price to database."""
+	conn = sqlite3.connect(DB_FILE)
 	c = conn.cursor()
 	c.execute('CREATE TABLE IF NOT EXISTS prices (date text, price text, website text)')
 	hostname = urlparse(url).hostname
@@ -25,136 +28,129 @@ def addToDatabase(price, url):
 	conn.close()
 
 
-for url in urls:
-	page = requests.get(url)
-	soup = BeautifulSoup(page.content, 'html.parser')
-	if 'radioddity' in url:
-		# <span class="price-item price-item--sale price-item--last">
-        #   <span class="money">$445.00</span>
-        # </span>
-        
-        # Use both price-item and money to get the price
-        # Get parent element .price-item
-		parent = soup.find('span', class_='price-item')
-		if parent:
-			money_span = parent.find('span', class_='money')
-			if money_span:
-				price = money_span.text
-			else:
-				price = 'Not available'
+def extract_price_radioddity(soup):
+	"""Extract price from Radioddity product page."""
+	parent = soup.find('span', class_='price-item')
+	if parent:
+		money_span = parent.find('span', class_='money')
+		return money_span.text if money_span else 'Not available'
+	return 'Not available'
+
+
+def extract_price_amazon(soup):
+	"""Extract price from Amazon product page."""
+	parent = soup.find_all('span', class_='a-offscreen')
+	return parent[0].text if parent else 'Not available'
+
+
+def extract_price_hamradio(soup):
+	"""Extract price from Hamradio product page."""
+	parent = soup.find('p', class_='addtoCart')
+	if parent:
+		strong = parent.find('strong')
+		return strong.text if strong else 'Not available'
+	return 'Not available'
+
+
+def extract_price_randl(soup):
+	"""Extract price from R&L Electronics product page."""
+	parent = soup.find('h2', id='productPrices')
+	if parent:
+		span = parent.find('span', class_='productBasePrice')
+		return span.text.strip() if span else 'Not available'
+	return 'Not available'
+
+
+def scrape_prices(urls):
+	"""Scrape prices from all URLs."""
+	prices = []
+	for url in urls:
+		page = requests.get(url)
+		soup = BeautifulSoup(page.content, 'html.parser')
+
+		if 'radioddity' in url:
+			price = extract_price_radioddity(soup)
+		elif 'amazon' in url:
+			price = extract_price_amazon(soup)
+		elif 'hamradio' in url:
+			price = extract_price_hamradio(soup)
+		elif 'randl' in url:
+			price = extract_price_randl(soup)
 		else:
 			price = 'Not available'
 
-	elif 'amazon' in url:
-		# <div id="corePrice_feature_div" class="celwidget" data-feature-name="corePrice" data-csa-c-type="widget" data-csa-c-content-id="corePrice" data-csa-c-slot-id="corePrice_feature_div" data-csa-c-asin="B08X6Z6KN2" data-csa-c-is-in-initial-active-row="false" data-csa-c-id="5xz4s9-c15z71-4jbniq-44u0de" data-cel-widget="corePrice_feature_div">
-        # <div data-csa-c-type="widget" data-csa-c-slot-id="apex_dp_offer_display" data-csa-c-content-id="apex_with_rio_cx" data-csa-c-id="9meg2n-xob7h1-fidyg-hdg9e3">
-        # <div class="a-section a-spacing-micro">
-        # <div class="a-section apex-core-price-identifier"> 
-        # <span class="a-price aok-align-center apex-pricetopay-value" data-a-size="xl" data-a-color="base">
-        # <span class="a-offscreen">$465.00</span><span aria-hidden="true">
-        # <span class="a-price-symbol">$</span>
-        # <span class="a-price-whole">465<span class="a-price-decimal">.</span></span>
-        # <span class="a-price-fraction">00</span></span></span>
-        # <span id="taxInclusiveMessage" class="a-size-mini a-color-base aok-align-center aok-nowrap"></span>
-        # </div></div></div>
+		prices.append(price)
+		if price != 'Not available':
+			add_to_database(price, url)
 
-		corePrice_feature_div = soup.find('div', id='corePrice_feature_div')
-		parent = soup.find_all('span', class_='a-offscreen')
-		if parent:
-			price = parent[0].text
-		else:
-			price = 'Not available'
-
-	elif 'hamradio' in url:
-		parent = soup.find('p', class_='addtoCart')
-		# Get the child strong element and get the inner text
-		if parent:
-			strong = parent.find('strong')
-			if strong:
-				price = strong.text
-			else:
-				price = 'Not available'
-		else:
-			price = 'Not available'
-  
-	elif 'randl' in url:
-		parent = soup.find('h2', id='productPrices')
-		if parent:
-			span = parent.find('span', class_='productBasePrice')
-			if span:
-				price = span.text.strip()
-			else:
-				price = 'Not available'
-		else:
-			price = 'Not available'
+	return prices
 
 
-	prices.append(price)
-	addToDatabase(price, url)
-	
- 
- 
-# Filter out 'Not available' prices for calculations
-valid_prices = [float(price.replace('$', '')) for price in prices if price != 'Not available']
+def print_daily_summary(prices):
+	"""Print pricing summary."""
+	valid_prices = [float(price.replace('$', '')) for price in prices if price != 'Not available']
 
-if valid_prices:
-	average_price = str(sum(valid_prices) / len(valid_prices))
-	# round to 2 decimal places
-	average_price = "{:.2f}".format(float(average_price))
-else:
-	average_price = 'N/A'
+	print("The prices of the Xiegu G90 are:")
+	print(prices)
+	print(f"On today, {datetime.today().strftime('%Y-%m-%d')}:")
 
-print("The prices of the Xiegu G90 are:")
-print(prices)
-print("On today, " + datetime.today().strftime('%Y-%m-%d') + ":")
-print("The average price is $" + average_price)
+	if valid_prices:
+		average_price = "{:.2f}".format(sum(valid_prices) / len(valid_prices))
+		print(f"The average price is ${average_price}")
 
-if valid_prices:
-	lowest_price = min(valid_prices)
-	lowest_price_str = "${:.2f}".format(lowest_price)
-	# Find the index of the price in the original list
-	for i, price in enumerate(prices):
-		if price == lowest_price_str:
-			lowest_price_index = i
-			break
-	print("The lowest price is $" + "{:.2f}".format(lowest_price) + " at " + urls[lowest_price_index] + ", which is $" + ("{:.2f}".format(abs(lowest_price - float(average_price)))) + " less than the average price.")
+		lowest_price = min(valid_prices)
+		lowest_price_str = f"${lowest_price:.2f}"
+
+		for i, price in enumerate(prices):
+			if price == lowest_price_str:
+				difference = abs(lowest_price - float(average_price))
+				print(f"The lowest price is ${lowest_price:.2f} at {URLS[i]}, which is ${difference:.2f} less than the average price.")
+				break
+	else:
+		print("The average price is N/A")
 
 
-# Generate a graphic with the prices over time
-# Get the dates from the database
-conn = sqlite3.connect('G90_prices.db')
-c = conn.cursor()
-c.execute('SELECT date, price FROM prices')
-rows = c.fetchall()
-dates = []
-prices = []
-for row in rows:
-	# Skip 'Not available' prices
-	if row[1] != 'Not available':
-		dates.append(row[0])
-		prices.append(float(row[1]))
-conn.close()
+def generate_graph():
+	"""Generate price trend graph from database."""
+	conn = sqlite3.connect(DB_FILE)
+	c = conn.cursor()
+	c.execute('SELECT date, price FROM prices')
+	rows = c.fetchall()
+	conn.close()
 
-# average the prices for the same date
-date_price_dict = {}
-for date, price in zip(dates, prices):
-	# group prices by date
-	date_price_dict.setdefault(date, []).append(price)
+	if not rows:
+		print("No price data available to plot.")
+		return
 
-# sort dates so the plot is chronological
-dates = sorted(date_price_dict.keys())
-prices = [sum(date_price_dict[date]) / len(date_price_dict[date]) for date in dates]
+	dates = []
+	prices = []
+	for date, price in rows:
+		if price != 'Not available':
+			dates.append(date)
+			prices.append(float(price))
 
-# Convert dates to datetime objects for plotting
-import matplotlib.dates as mdates
-dates_dt = [datetime.strptime(date, '%Y-%m-%d') for date in dates]
-# Plot the prices using matplotlib date converter
-plt.figure(figsize=(10, 6))
-plt.plot(mdates.date2num(dates_dt), prices)
-plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
-plt.gca().xaxis.set_major_locator(mdates.AutoDateLocator())
-plt.ylabel('Price')
-plt.title('Prices of Xiegu G90 over time')
-plt.xticks(rotation=45)
-plt.savefig('G90_prices.png', bbox_inches='tight')
-plt.show()
+	date_price_dict = {}
+	for date, price in zip(dates, prices):
+		date_price_dict.setdefault(date, []).append(price)
+
+	sorted_dates = sorted(date_price_dict.keys())
+	min_prices = [min(date_price_dict[date]) for date in sorted_dates]
+
+	dates_dt = [datetime.strptime(date, '%Y-%m-%d') for date in sorted_dates]
+
+	plt.figure(figsize=(10, 6))
+	plt.plot(mdates.date2num(dates_dt), min_prices)
+	plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+	plt.gca().xaxis.set_major_locator(mdates.AutoDateLocator())
+	plt.ylabel('Price')
+	plt.title('Lowest Daily Price of Xiegu G90 over time')
+	plt.xticks(rotation=45)
+	plt.tight_layout()
+	plt.savefig(IMAGE_FILE, bbox_inches='tight')
+	plt.show()
+
+
+if __name__ == '__main__':
+	prices = scrape_prices(URLS)
+	print_daily_summary(prices)
+	generate_graph()
