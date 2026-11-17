@@ -18,14 +18,15 @@ IMAGE_FILE = 'G90_prices.png'
 
 
 def add_to_database(price, url):
-	"""Save price to database."""
-	conn = sqlite3.connect(DB_FILE)
-	c = conn.cursor()
-	c.execute('CREATE TABLE IF NOT EXISTS prices (date text, price text, website text)')
-	hostname = urlparse(url).hostname
-	c.execute('INSERT INTO prices VALUES (?, ?, ?)', (datetime.today().strftime('%Y-%m-%d'), price.replace('$', ''), hostname))
-	conn.commit()
-	conn.close()
+	print(f"Adding {price} from {url}")
+	# """Save price to database."""
+	# conn = sqlite3.connect(DB_FILE)
+	# c = conn.cursor()
+	# c.execute('CREATE TABLE IF NOT EXISTS prices (date text, price text, website text)')
+	# hostname = urlparse(url).hostname
+	# c.execute('INSERT INTO prices VALUES (?, ?, ?)', (datetime.today().strftime('%Y-%m-%d'), price.replace('$', ''), hostname))
+	# conn.commit()
+	# conn.close()
 
 
 def extract_price_radioddity(soup):
